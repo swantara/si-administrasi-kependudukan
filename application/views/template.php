@@ -32,6 +32,11 @@
   <!-- jQuery 2.2.0 -->
   <script src="<?=base_url()?>assets/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 
+  
+  <!-- DataTables -->
+  <script src="<?=base_url()?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?=base_url()?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -59,7 +64,7 @@
     </nav>
   </header>
 
-    <!-- Left side column. contains the logo and sidebar -->
+  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -134,9 +139,6 @@
 
 <!-- Bootstrap 3.3.6 -->
 <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?=base_url()?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?=base_url()?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->

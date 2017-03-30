@@ -22,7 +22,7 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <div class="form-group">
-                  <label>NIK (Nama)</label>
+                  <label>NIK</label>
                   <select required name="nama" class="form-control select2">
                     <?php
                       if(is_object($penduduk) || is_array($penduduk)) :
@@ -36,28 +36,57 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>NIK</label>
+                  <label>Nama</label>
                   <input required name="" type="text" class="form-control" placeholder="12 digit">
                 </div>
                 <div class="form-group">
                   <label>Kewarganegaraan</label>
                   <input required name="nama" type="text" class="form-control" placeholder="Kewarganegaraan">
                 </div>
+                <hr/>
                 <div class="form-group">
                   <label>Nama Ayah</label>
-                  <input required name="nama_ayah" type="text" class="form-control" placeholder="nama ayah">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input required name="nama_ayah" type="text" class="form-control" placeholder="nama ayah" onblur="getdata(this)">
+                    </div>
+                    <div class="col-md-6">
+                      <h5 id="nama_ayah_nama">Nama :</h5>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Nama Ibu</label>
-                  <input required name="nama_ibu" type="text" class="form-control" placeholder="nama ibu">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input required name="nama_ibu" type="text" class="form-control" placeholder="nama ibu" onblur="getdata(this)">
+                    </div>
+                    <div class="col-md-6">
+                      <h5 id="nama_ibu_nama">Nama :</h5>
+                    </div>
+                  </div>
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                   <label>Saksi I</label>
-                  <input required name="saksi_I" type="text" class="form-control" placeholder="nama saksi I">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input required name="saksi_I" type="text" class="form-control" placeholder="nama saksi I" onblur="getdata(this)">
+                    </div>
+                    <div class="col-md-6">
+                      <h5 id="saksi_I_nama">Nama : </h5>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Saksi II</label>
-                  <input required name="saksi_II" type="text" class="form-control" placeholder="Nama saksi 2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input required name="saksi_II" type="text" class="form-control" placeholder="Nama saksi 2" onblur="getdata(this)">
+                    </div>
+                    <div class="col-md-6">
+                      <h5 id="saksi_II_nama">Nama :</h5>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /.box-body -->
@@ -75,3 +104,22 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<script>
+  
+  function getdata(input)
+  {
+    $.getJSON( "<?=site_url('penduduk/ajaxgetdetailbynik/')?>" + input.value)
+      .done(function( data ) {
+        if(data != null)
+        {
+          $('#' + input.name + '_nama').html('Nama : ' + data.nama);
+        }
+        else
+        {
+          $('#' + input.name + '_nama').html('Data tidak ditemukan');
+        }
+      });
+  }
+
+</script>

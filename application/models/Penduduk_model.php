@@ -10,7 +10,7 @@ class Penduduk_model extends CI_Model {
 
 	public function getpenduduk()
 	{
-		$query = $this->db->query('select p.*, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk from t_penduduk p inner join m_shdk s on s.id_shdk=p.status_kk inner join m_agama a on a.id_agama=p.id_agama inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan');
+		$query = $this->db->query('select p.*, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk from t_penduduk p inner join m_shdk s on s.id_shdk=p.status_kk inner join m_agama a on a.id_agama=p.id_agama inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan where p.status <> 0');
 
 		if($query->num_rows() > 0)
 		{
@@ -25,6 +25,27 @@ class Penduduk_model extends CI_Model {
 	public function getdetailpenduduk($id)
 	{
 		$query = $this->db->query('select p.*, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk from t_penduduk p inner join m_shdk s on s.id_shdk=p.status_kk inner join m_agama a on a.id_agama=p.id_agama inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan where p.id_penduduk='.$id);
+
+		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getdetailpendudukbynik($nik)
+	{
+		$query = $this->db->query('select p.*, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk 
+			from t_penduduk p 
+			inner join m_shdk s on s.id_shdk=p.status_kk 
+			inner join m_agama a on a.id_agama=p.id_agama 
+			inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan 
+			left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin 
+			left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan 
+			where p.nik='.$nik);
 
 		if($query->num_rows() == 1)
 		{
@@ -180,27 +201,28 @@ class Penduduk_model extends CI_Model {
 	{
 		//ambil data admin yang menginputkan data
 		$data_session = $this->session->userdata('session');
-		$id_user = $data_session['id_user'];
+		$id_user = 1; //$data_session['id_user'];
 		
 		$data = array(
-		  'periode_data' => $this -> input -> post('periode_data'),
 		  'nik' => $this -> input -> post('nik'),
-		  'nkk' => $this -> input -> post('nkk'),
+		  'no_kk' => $this -> input -> post('nkk'),
+		  'periode_data' => $this -> input -> post('periode_data'),
 		  'status_kk' => $this -> input -> post('status_kk'),
 		  'nama' => $this -> input -> post('nama'),
 		  'tempat_lahir' => $this -> input -> post('tempat_lahir'),
-		  'tanggal_lahir' => $this -> input -> post('tanggal_lahir'),
-		  'jenis_kelamin' => $this -> input -> post('jenis_kelamin'),
-		  'alamat' => $this -> input -> post('alamat'),
-		  'agama' => $this -> input -> post('agama'),
-		  'pendidikan' => $this -> input -> post('pendidikan'),
+		  'tgl_lahir' => date('Y-m-d', strtotime($this -> input -> post('tanggal_lahir'))),
+		  'jk' => $this -> input -> post('jenis_kelamin'),
+		  'alamat_saat_ini' => $this -> input -> post('alamat'),
+		  'id_agama' => $this -> input -> post('agama'),
+		  'id_pendidikan' => $this -> input -> post('pendidikan'),
 		  'pekerjaan' => $this -> input -> post('pekerjaan'),
 		  'telepon' => $this -> input -> post('telepon'),
+		  'status_kawin' => $this -> input -> post('status_kawin'),
 		  'nama_ayah' => $this -> input -> post('nama_ayah'),
 		  'nama_ibu' => $this -> input -> post('nama_ibu'),
 		  'kewarganegaraan' => $this -> input -> post('kewarganegaraan'),
 		  'status_kependudukan' => $this -> input -> post('status_kependudukan'),
-		  'created_by' => $this -> input -> $id_user
+		  'created_by' => $id_user
 		  );
 
 		//insert ke database
@@ -217,7 +239,7 @@ class Penduduk_model extends CI_Model {
 	{
 		//ambil data admin yang menginputkan data
 		$data_session = $this->session->userdata('session');
-		$id_user = $data_session['id_user'];
+		$id_user = 1; //$data_session['id_user'];
 		
 		if($_FILES['foto']['error'] != 4)
 		{
@@ -230,10 +252,11 @@ class Penduduk_model extends CI_Model {
 		$data = array(
 		  'nik' => $this -> input -> post('nik'),
 		  'no_kk' => $this -> input -> post('nkk'),
+		  'periode_data' => $this -> input -> post('periode_data'),
 		  'status_kk' => $this -> input -> post('status_kk'),
 		  'nama' => $this -> input -> post('nama'),
 		  'tempat_lahir' => $this -> input -> post('tempat_lahir'),
-		  'tgl_lahir' => $this -> input -> post('tanggal_lahir'),
+		  'tgl_lahir' => date('Y-m-d', strtotime($this -> input -> post('tanggal_lahir'))),
 		  'jk' => $this -> input -> post('jenis_kelamin'),
 		  'alamat_saat_ini' => $this -> input -> post('alamat'),
 		  'id_agama' => $this -> input -> post('agama'),
@@ -245,7 +268,7 @@ class Penduduk_model extends CI_Model {
 		  'nama_ibu' => $this -> input -> post('nama_ibu'),
 		  'kewarganegaraan' => $this -> input -> post('kewarganegaraan'),
 		  'status_kependudukan' => $this -> input -> post('status_kependudukan'),
-		  'updated_by' => $this -> input -> $id_user
+		  'updated_by' => $id_user
 		  );
 
 		//insert ke database
@@ -265,7 +288,7 @@ class Penduduk_model extends CI_Model {
 		//insert ke database
 		$this->db->set('status', 0);
 		$this->db->where('id_penduduk', $id);
-		$this->db->update('tb_penduduk');
+		$this->db->update('t_penduduk');
 
 		$this->session->set_flashdata('alert','delete');
 		return true;

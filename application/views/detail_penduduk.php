@@ -10,6 +10,38 @@
 
     <!-- Main content -->
       <section class="content">
+      <?php 
+        if($this->session->flashdata('alert') !== null):
+          if($this->session->flashdata('alert') == 'save'):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-success alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Tambahkan</h6>    
+      </div>
+      <!-- /info alert -->
+      <?php
+          elseif($this->session->flashdata('alert') == "update"):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-info alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Ubah</h6>  
+      </div>
+      <!-- /info alert -->
+      <?php
+          else:
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-danger alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Hapus</h6>
+      </div>
+      <!-- /info alert -->
+      <?php
+          endif;
+        endif;
+      ?>
         <div class="row">
         <?php
           if(is_object($data) || is_array($data)) :
@@ -135,6 +167,17 @@
                       echo "-";
                     else:
                       echo $row->status_perkawinan;
+                    endif;
+                  ?>
+                </p>
+                <hr/>
+                <strong>Status Kependuduk</strong>
+                <p>
+                  <?php
+                    if(is_null($row->status_penduduk) || $row->status_penduduk=="") :
+                      echo "-";
+                    else:
+                      echo $row->status_penduduk;
                     endif;
                   ?>
                 </p>
