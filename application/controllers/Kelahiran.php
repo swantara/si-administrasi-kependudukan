@@ -27,7 +27,8 @@ class Kelahiran extends CI_Controller {
 
 		if($this->form_validation->run() === false)
 		{
-			$data['body'] = $this->load->view('tambah_kelahiran', '', true);
+			$data['penduduk'] = $this->kelahiran->getnamapenduduk();
+			$data['body'] = $this->load->view('tambah_kelahiran', $data, true);
 			$this->load->view('template', $data);
 		}
 		else

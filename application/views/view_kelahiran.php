@@ -31,27 +31,32 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                  if(is_object($data) || is_array($data)) :
+                    $no = 1;
+                    foreach ($data as $row) :
+                ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>6</td>
-                  <td>cp</td>
+                  <td><?=$row->nik?></td>
+                  <td><?=$row->nama?></td>
+                  <td><?=$row->nama_ibu?></td>
+                  <td><?=$row->nama_ayah?></td>
+                  <td><?=$row->nama_saksi1?></td>
+                  <td><?=$row->nama_saksi2?></td>
                   <td>
                     <div class="btn-group-vertical">
-                      <button type="button" class="btn btn-default" onClick="window.location.href='data-kelahiran-detail.php'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('kelahiran/detail/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-eye"></i> Detail
                         </div>
                       </button>
-                      <button type="button" class="btn btn-default" onClick="window.location.href='data-kelahiran-edit.php'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('kelahiran/edit/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-edit"></i> Ubah
                         </div>
                       </button>
-                      <button type="button" class="btn btn-danger" onClick="#">
+                      <button type="button" class="btn btn-danger" onClick="window.location.href='<?=site_url('kelahiran/hapus/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-trash"></i> Hapus
                         </div>
@@ -59,6 +64,10 @@
                     </div>
                   </td>
                 </tr>
+                <?php
+                    endforeach;
+                  endif;
+                ?>
                 </tbody>
                 <tfoot>
                 <tr>

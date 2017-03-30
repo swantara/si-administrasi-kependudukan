@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Tambah Data Penduduk</small>
+        <small>Tambah Data Penduduk</small> 
       </h1>
     </section>
 
@@ -21,6 +21,20 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
+                <div class="form-group">
+                  <label>NIK (Nama)</label>
+                  <select required name="nama" class="form-control select2">
+                    <?php
+                      if(is_object($penduduk) || is_array($penduduk)) :
+                        foreach ($penduduk as $row) :
+                    ?>
+                    <option value="<?=$row->nik?>"><?php echo $row->nik . " (" . $row->nama . ")"?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
+                  </select>
+                </div>
                 <div class="form-group">
                   <label>NIK</label>
                   <input required name="" type="text" class="form-control" placeholder="12 digit">

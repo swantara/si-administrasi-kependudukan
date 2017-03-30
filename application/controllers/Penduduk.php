@@ -12,6 +12,8 @@ class Penduduk extends CI_Controller {
   //  		{
   //  			redirect('login', 'refresh');
   //  		}
+
+		$this->output->enable_profiler(TRUE);
 	}
 
 	public function index()
@@ -36,7 +38,12 @@ class Penduduk extends CI_Controller {
 
 		if($this->form_validation->run() === false)
 		{
-			$data['body'] = $this->load->view('tambah_penduduk', '', true);
+			$data['shdk'] = $this->penduduk->getshdk();
+			$data['agama'] = $this->penduduk->getagama();
+			$data['pendidikan'] = $this->penduduk->getpendidikan();
+			$data['kawin'] = $this->penduduk->getstatuskawin();
+			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
+			$data['body'] = $this->load->view('tambah_penduduk', $data, true);
 			$this->load->view('template', $data);
 		}
 		else
@@ -53,7 +60,7 @@ class Penduduk extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
-	public function edit($id)
+	public function edit($id) 
 	{
 		$this->form_validation->set_rules('periode_data', 'Periode Data', 'trim|required');
 		$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
@@ -69,6 +76,11 @@ class Penduduk extends CI_Controller {
 		if($this->form_validation->run() === false)
 		{
 			$data['data'] = $this->penduduk->getdetailpenduduk($id)[0];
+			$data['shdk'] = $this->penduduk->getshdkexclude('1');
+			$data['agama'] = $this->penduduk->getagamaexclude('1');
+			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
+			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
+			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
 			$data['body'] = $this->load->view('edit_penduduk', $data, true);
 			$this->load->view('template', $data);
 		}

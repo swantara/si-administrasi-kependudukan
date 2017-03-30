@@ -44,10 +44,21 @@
                   <input required name="nkk" type="text" class="form-control" placeholder="2">
                 </div>
                 <div class="form-group">
+                  <label>Periode Data</label>
+                  <input required name="periode_data" type="text" class="form-control" value="<?php echo date("Y");?>">
+                </div>
+                <div class="form-group">
                   <label>Status KK</label>
                   <select required name="status_kk" class="form-control">
-                    <option value="1" >Aktif</option>
-                    <option value="0" selected>Non-aktif</option>
+                    <?php
+                      if(is_object($shdk) || is_array($shdk)) :
+                        foreach ($shdk as $row) :
+                    ?>
+                    <option value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
@@ -89,15 +100,29 @@
                 <div class="form-group">
                   <label>Agama</label>
                   <select required name="jenis_kelamin" class="form-control">
-                    <option value="1" >Agama 1</option>
-                    <option value="2" selected>Agama 2</option>
+                    <?php
+                      if(is_object($agama) || is_array($agama)) :
+                        foreach ($agama as $row) :
+                    ?>
+                    <option value="<?=$row->id_agama?>"><?=$row->agama?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Pendidikan</label>
                   <select required name="jenis_kelamin" class="form-control">
-                    <option value="1" >Pendidikan 1</option>
-                    <option value="2" selected>Pendidikan 2</option>
+                    <?php
+                      if(is_object($pendidikan) || is_array($pendidikan)) :
+                        foreach ($pendidikan as $row) :
+                    ?>
+                    <option value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
@@ -111,8 +136,15 @@
                 <div class="form-group">
                   <label>Status Perkawinan</label>
                   <select required name="jenis_kelamin" class="form-control">
-                    <option value="1" >Jomblo</option>
-                    <option value="2" selected>Cuma Dianggep Kakak</option>
+                    <?php
+                      if(is_object($kawin) || is_array($kawin)) :
+                        foreach ($kawin as $row) :
+                    ?>
+                    <option value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
@@ -130,8 +162,15 @@
                 <div class="form-group">
                   <label>Status Kependudukan</label>
                   <select required name="jenis_kelamin" class="form-control">
-                    <option value="1" >Status 1</option>
-                    <option value="2" selected>Status 2</option>
+                    <?php
+                      if(is_object($kependudukan) || is_array($kependudukan)) :
+                        foreach ($kependudukan as $row) :
+                    ?>
+                    <option value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
+                    <?php
+                        endforeach;
+                      endif;
+                    ?>
                   </select>
                 </div>
               </div>

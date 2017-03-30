@@ -10,7 +10,7 @@ class Kelahiran_model extends CI_Model {
 
 	public function getkelahiran()
 	{
-		$query = $this->db->query('select k.*, p.nama as nama_penduduk, pa.nama as nama_ibu, pb.nama as nama_ayah, pc.nama as nama_saksi1, pd.nama as nama_saksi2 from t_kelahiran k inner join t_penduduk p on p.id_penduduk=k.id_penduduk inner join t_penduduk pa on pa.id_penduduk=k.id_ibu inner join t_penduduk pb on pb.id_penduduk=k.id_ayah inner join t_penduduk pc on pc.id_penduduk=k.id_saksi1 inner join t_penduduk pd on pd.id_penduduk=k.id_saksi2');
+		$query = $this->db->query('select k.*, p.nama as nama_penduduk, p.nik as nik, pa.nama as nama_ibu, pb.nama as nama_ayah, pc.nama as nama_saksi1, pd.nama as nama_saksi2 from t_kelahiran k inner join t_penduduk p on p.id_penduduk=k.id_penduduk inner join t_penduduk pa on pa.id_penduduk=k.id_ibu inner join t_penduduk pb on pb.id_penduduk=k.id_ayah inner join t_penduduk pc on pc.id_penduduk=k.id_saksi1 inner join t_penduduk pd on pd.id_penduduk=k.id_saksi2');
 
 		if($query->num_rows() > 0)
 		{
@@ -24,13 +24,27 @@ class Kelahiran_model extends CI_Model {
 
 	public function getdetailkelahiran($id)
 	{
-		$query = $this->db->query('select k.*, p.nama as nama_penduduk, pa.nama as nama_ibu, pb.nama as nama_ayah, pc.nama as nama_saksi1, pd.nama as nama_saksi2 from t_kelahiran k inner join t_penduduk p on p.id_penduduk=k.id_penduduk inner join t_penduduk pa on pa.id_penduduk=k.id_ibu inner join t_penduduk pb on pb.id_penduduk=k.id_ayah inner join t_penduduk pc on pc.id_penduduk=k.id_saksi1 inner join t_penduduk pd on pd.id_penduduk=k.id_saksi2 where id_penduduk='.$id);
+		$query = $this->db->query('select k.*, p.nama as nama_penduduk, p.nik as nik, pa.nama as nama_ibu, pb.nama as nama_ayah, pc.nama as nama_saksi1, pd.nama as nama_saksi2 from t_kelahiran k inner join t_penduduk p on p.id_penduduk=k.id_penduduk inner join t_penduduk pa on pa.id_penduduk=k.id_ibu inner join t_penduduk pb on pb.id_penduduk=k.id_ayah inner join t_penduduk pc on pc.id_penduduk=k.id_saksi1 inner join t_penduduk pd on pd.id_penduduk=k.id_saksi2 where id_penduduk='.$id);
 
 		// $query = "select k.*, pa.nama as namaayah, pi.nama as namaibu from t_kelahiran k
 		// 	inner join t_penduduk pa on k.ayah=pa.id_penduduk
 		// 	inner join t_penduduk pi on k.ibu=pi.id_penduduk";
 
 		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getnamapenduduk()
+	{
+		$query = $this->db->query('select p.nik, p.nama from t_penduduk as p');
+
+		if($query->num_rows() > 0)
 		{
 			return $query->result();
 		}

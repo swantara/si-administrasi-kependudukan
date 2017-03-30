@@ -21,7 +21,9 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/select2/select2.min.css">
 
   <!-- simple line icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
@@ -145,6 +147,8 @@
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
 <!-- bootstrap datepicker -->
 <script src="<?=base_url()?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- Select2 -->
+<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
 <!-- excel -->
 <script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>
 <script>
@@ -163,6 +167,8 @@ function export() {
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
 <script>
   $(document).ready(function() {
+    //Initialize Select2 Elements
+    $(".select2").select2();
     $('#example1').DataTable({
       "paging": true,
       "lengthChange": true,
@@ -173,7 +179,8 @@ function export() {
     });
     //Date picker
     $('#datepicker').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'dd-mm-yyyy'
     });
   } );
 </script>

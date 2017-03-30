@@ -33,29 +33,34 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                  if(is_object($data) || is_array($data)) :
+                    $no = 1;
+                    foreach ($data as $row) :
+                ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>6</td>
-                  <td>6</td>
-                  <td>cp</td>
+                  <td><?=$row->nik?></td>
+                  <td><?=$row->no_kk?></td>
+                  <td><?=$row->created_at?></td>
+                  <td><?=$row->nama?></td>
+                  <td><?php echo $row->tempat_lahir . ", " . $row->tgl_lahir?></td>
+                  <td><?=$row->jk?></td>
+                  <td><?=$row->alamat_saat_ini?></td>
+                  <td><?=$row->status_kawin?></td>
                   <td>
                     <div class="btn-group-vertical">
-                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('penduduk/detail')?>'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('penduduk/detail/'.$row->id_penduduk)?>'">
                         <div class="pull-left">
                           <i class="fa fa-eye"></i> Detail
                         </div>
                       </button>
-                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('penduduk/edit')?>'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('penduduk/edit/'.$row->id_penduduk)?>'">
                         <div class="pull-left">
                           <i class="fa fa-edit"></i> Ubah
                         </div>
                       </button>
-                      <button type="button" class="btn btn-danger" onClick="#">
+                      <button type="button" class="btn btn-danger" onClick="window.location.href='<?=site_url('penduduk/hapus/'.$row->id_penduduk)?>'">
                         <div class="pull-left">
                           <i class="fa fa-trash"></i> Hapus
                         </div>
@@ -63,6 +68,10 @@
                     </div>
                   </td>
                 </tr>
+                <?php
+                    endforeach;
+                  endif;
+                ?>
                 </tbody>
                 <tfoot>
                 <tr>
