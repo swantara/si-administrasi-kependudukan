@@ -99,11 +99,16 @@ class Penduduk extends CI_Controller {
 
 	public function ajaxgetdetailbynik($nik)
 	{
-		echo json_encode($this->penduduk->getdetailpendudukbynik($nik)[0]);
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->penduduk->getdetailpendudukbynik($nik)[0]);
+		}
 	}
 
-	public function ajaxviewpenduduk(){
-		// DB table to use
+	public function ajaxviewpenduduk()
+	{
+		if($this->input->is_ajax_request())
+		{
+			// DB table to use
 			$table = 't_penduduk';
 			// Table's primary key
 			$primaryKey = 'p`.`id_penduduk';
@@ -195,5 +200,6 @@ class Penduduk extends CI_Controller {
 			echo json_encode(
 				$this->ssp->simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinQuery, $extraWhere )
 			);
+		}
 	}
 }
