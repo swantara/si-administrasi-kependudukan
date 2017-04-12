@@ -23,29 +23,19 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>NIK</label>
-                  <select required name="nama" class="form-control select2">
-                    <?php
-                      if(is_object($penduduk) || is_array($penduduk)) :
-                        foreach ($penduduk as $row) :
-                    ?>
-                    <option value="<?=$row->nik?>"><?php echo $row->nik . " (" . $row->nama . ")"?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
+                  <input required name="nik" type="text" class="form-control" placeholder="12 digit">
                 </div>
                 <div class="form-group">
                   <label>Nama</label>
-                  <input required name="" type="text" class="form-control" placeholder="12 digit">
+                  <input required name="nama" type="text" class="form-control" placeholder="12 digit">
                 </div>
                 <div class="form-group">
                   <label>Kewarganegaraan</label>
-                  <input required name="nama" type="text" class="form-control" placeholder="Kewarganegaraan">
+                  <input required name="kewarganegaraan" type="text" class="form-control" placeholder="Kewarganegaraan">
                 </div>
                 <hr/>
                 <div class="form-group">
-                  <label>Nama Ayah</label>
+                  <label>NIK Ayah</label>
                   <div class="row">
                     <div class="col-md-6">
                       <input required name="nama_ayah" type="text" class="form-control" placeholder="nama ayah" onblur="getdata(this)">
@@ -56,7 +46,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Nama Ibu</label>
+                  <label>NIK Ibu</label>
                   <div class="row">
                     <div class="col-md-6">
                       <input required name="nama_ibu" type="text" class="form-control" placeholder="nama ibu" onblur="getdata(this)">
@@ -67,7 +57,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Saksi I</label>
+                  <label>NIK Saksi I</label>
                   <div class="row">
                     <div class="col-md-6">
                       <input required name="saksi_I" type="text" class="form-control" placeholder="nama saksi I" onblur="getdata(this)">
@@ -78,7 +68,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Saksi II</label>
+                  <label>NIK Saksi II</label>
                   <div class="row">
                     <div class="col-md-6">
                       <input required name="saksi_II" type="text" class="form-control" placeholder="Nama saksi 2" onblur="getdata(this)">
