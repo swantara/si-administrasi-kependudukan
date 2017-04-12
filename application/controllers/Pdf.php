@@ -29,4 +29,12 @@ class Pdf extends CI_Controller {
 		$pdf->Output();
 		//$this->load->view('welcome_message');
 	}
+
+	$templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template1.docx');
+
+$templateProcessor->setValue('nama_kaling', 'meong');
+$templateProcessor->setValue('tgl_surat_kelahiran', 'tgl meong');
+$templateProcessor->setValue('no_kelahiran', 'no meong');
+
+$templateProcessor->saveAs('hasil.docx');
 }
