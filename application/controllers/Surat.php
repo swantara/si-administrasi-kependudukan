@@ -30,6 +30,7 @@ class Surat extends CI_Controller {
 
 		// Your browser will name the file "hasil.docx"
 		// regardless of what it's named on the server 
+		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
 		header("Content-Disposition: attachment; filename=hasil.docx");
 		readfile('assets/outputdoc/hasil.docx'); // or echo file_get_contents($temp_file);
 		unlink('assets/outputdoc/hasil.docx');  // remove temp file
