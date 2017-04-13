@@ -7,6 +7,7 @@ class Kelahiran extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('kelahiran_model', 'kelahiran', true);
+		$this->load->model('penduduk_model', 'penduduk', true);
 
 		// if(!$this->session->userdata('session'))
   //  		{
@@ -28,6 +29,11 @@ class Kelahiran extends CI_Controller {
 		if($this->form_validation->run() === false)
 		{
 			$data['penduduk'] = $this->kelahiran->getnamapenduduk();
+			$data['shdk'] = $this->penduduk->getshdk();
+			$data['agama'] = $this->penduduk->getagama();
+			$data['pendidikan'] = $this->penduduk->getpendidikan();
+			$data['kawin'] = $this->penduduk->getstatuskawin();
+			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
 			$data['body'] = $this->load->view('tambah_kelahiran', $data, true);
 			$this->load->view('template', $data);
 		}
