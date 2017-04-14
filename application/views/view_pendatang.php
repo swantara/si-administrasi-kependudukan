@@ -10,6 +10,38 @@
 
     <!-- Main content -->
     <section class="content">
+      <?php 
+        if($this->session->flashdata('alert') !== null):
+          if($this->session->flashdata('alert') == 'save'):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-success alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Tambahkan</h6>    
+      </div>
+      <!-- /info alert -->
+      <?php
+          elseif($this->session->flashdata('alert') == "update"):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-info alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Ubah</h6>  
+      </div>
+      <!-- /info alert -->
+      <?php
+          else:
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-danger alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Hapus</h6>
+      </div>
+      <!-- /info alert -->
+      <?php
+          endif;
+        endif;
+      ?>
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -22,6 +54,7 @@
                 <thead>
                 <tr>
                   <th>NIK</th>
+                  <th>Nama</th>
                   <th>Alamat Asal</th>
                   <th>Provinsi</th>
                   <th>Kabupaten</th>
@@ -33,29 +66,35 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                  if(is_object($data) || is_array($data)) :
+                    $no = 1;
+                    foreach ($data as $row) :
+                ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>6</td>
-                  <td>7</td>
-                  <td>8</td>
-                  <td>cp</td>
+                  <td><?=$row->nik?></td>
+                  <td><?=$row->nama_penduduk?></td>
+                  <td><?=$row->alamat_asal?></td>
+                  <td><?=$row->provinsi?></td>
+                  <td><?=$row->kabupaten?></td>
+                  <td><?=$row->kecamatan?></td>
+                  <td><?=$row->desa?></td>
+                  <td><?=$row->banjar?></td>
+                  <td><?=$row->keterangan?></td>
                   <td>
                     <div class="btn-group-vertical">
-                      <button type="button" class="btn btn-default" onClick="window.location.href='data-pendatang-detail.php'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/detail/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-eye"></i> Detail
                         </div>
                       </button>
-                      <button type="button" class="btn btn-default" onClick="window.location.href='data-pendatang-edit.php'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/edit/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-edit"></i> Ubah
                         </div>
                       </button>
-                      <button type="button" class="btn btn-danger" onClick="#">
+                      <button type="button" class="btn btn-danger" onClick="window.location.href='<?=site_url('pendatang/hapus/'.$row->id_kelahiran)?>'">
                         <div class="pull-left">
                           <i class="fa fa-trash"></i> Hapus
                         </div>
@@ -63,10 +102,15 @@
                     </div>
                   </td>
                 </tr>
+                <?php
+                    endforeach;
+                  endif;
+                ?>
                 </tbody>
                 <tfoot>
                 <tr>
                   <th>NIK</th>
+                  <th>Nama</th>
                   <th>Alamat Asal</th>
                   <th>Provinsi</th>
                   <th>Kabupaten</th>

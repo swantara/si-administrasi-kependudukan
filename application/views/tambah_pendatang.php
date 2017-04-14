@@ -4,26 +4,31 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Tambah Data Penduduk</small>
+        <small>Tambah Data Pendatang</small>
       </h1>
     </section>
 
     <!-- Main content -->
       <section class="content">
         <div class="row">
-        <form action"" method="post" enctype="multipart/form-data">
+        <?php echo form_open('pendatang/tambah', array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
+        <?php echo validation_errors();?>
           <!-- /.col -->
           <div class="col-md-12">
             <!-- About Me Box -->
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Kelahiran</h3>
+                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Pendatang</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                 <div class="form-group">
                   <label>NIK</label>
                   <input required name="nik" type="text" class="form-control" placeholder="Masukan Nomor Induk Kependudukan">
+                </div>
+                <div class="form-group">
+                  <label>Nama</label>
+                  <input required name="nama_penduduk" type="text" class="form-control" placeholder="Masukan Nama">
                 </div>
                 <div class="form-group">
                   <label>Alamat Asal</label>

@@ -28,7 +28,12 @@ class Pendatang extends CI_Controller {
 
 		if($this->form_validation->run() === false)
 		{
-			$data['body'] = $this->load->view('tambah_pendatang', '', true);
+			$data['provinsi'] = $this->pendatang->getprovinsi();
+			$data['kabupaten'] = $this->pendatang->getkabupaten();
+			$data['kecamatan'] = $this->pendatang->getkecamatan();
+			$data['desa'] = $this->pendatang->getdesa();
+			$data['banjar'] = $this->pendatang->getbanjar();
+			$data['body'] = $this->load->view('tambah_pendatang', $data, true);
 			$this->load->view('template', $data);
 		}
 		else

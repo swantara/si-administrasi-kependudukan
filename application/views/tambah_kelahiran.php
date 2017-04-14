@@ -171,10 +171,11 @@
                   <label>NIK Ayah</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <input required id="ayah" name="nik_ayah" type="text" class="form-control" placeholder="nama ayah" onblur="getdata(this)">
+                      <input required id="ayah" name="nik_ayah" type="text" class="form-control" value="<?=set_value('nik_ayah')?>" placeholder="nama ayah" onblur="getdata(this)">
                     </div>
                     <div class="col-md-6">
-                      <input required id="nama_ayah" name="nama_ayah" type="text" class="form-control" placeholder="nama ayah" readonly>
+                      <input required id="nama_ayah" name="nama_ayah" type="text" class="form-control" value="<?=set_value('nama_ayah')?>" placeholder="nama ayah" readonly>
+                      <input type="hidden" id="id_ayah" name="id_ayah" type="text" class="form-control" value="<?=set_value('id_ayah')?>">
                     </div>
                   </div>
                 </div>
@@ -182,10 +183,11 @@
                   <label>NIK Ibu</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <input required id="ibu" name="nik_ibu" type="text" class="form-control" placeholder="nama ibu" onblur="getdata(this)">
+                      <input required id="ibu" name="nik_ibu" type="text" class="form-control" value="<?=set_value('nik_ibu')?>" placeholder="nama ibu" onblur="getdata(this)">
                     </div>
                     <div class="col-md-6">
-                      <input required id="nama_ibu" name="nama_ibu" type="text" class="form-control" placeholder="nama ibu" readonly>
+                      <input required id="nama_ibu" name="nama_ibu" type="text" class="form-control" value="<?=set_value('nama_ibu')?>" placeholder="nama ibu" readonly>
+                      <input type="hidden" id="id_ibu" name="id_ibu" type="text" class="form-control" value="<?=set_value('id_ibu')?>">
                     </div>
                   </div>
                 </div>
@@ -193,10 +195,11 @@
                   <label>NIK Saksi I</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <input required id="saksi_I" name="nik_saksi_I" type="text" class="form-control" placeholder="nama saksi 1" onblur="getdata(this)">
+                      <input required id="saksi_I" name="nik_saksi_I" type="text" class="form-control" value="<?=set_value('nik_saksi_I')?>" placeholder="nama saksi 1" onblur="getdata(this)">
                     </div>
                     <div class="col-md-6">
-                      <input required id="nama_saksi_I" name="nama_saksi_I" type="text" class="form-control" placeholder="nama saksi 1" readonly>
+                      <input required id="nama_saksi_I" name="nama_saksi_I" type="text" class="form-control" value="<?=set_value('nama_saksi_I')?>" placeholder="nama saksi 1" readonly>
+                      <input type="hidden" id="id_saksi_I" name="id_saksi_I" type="text" class="form-control" value="<?=set_value('id_saksi_I')?>">
                     </div>
                   </div>
                 </div>
@@ -204,10 +207,11 @@
                   <label>NIK Saksi II</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <input required id="saksi_II" name="nik_saksi_II" type="text" class="form-control" placeholder="nama saksi 2" onblur="getdata(this)">
+                      <input required id="saksi_II" name="nik_saksi_II" type="text" class="form-control" value="<?=set_value('nik_saksi_II')?>" placeholder="nama saksi 2" onblur="getdata(this)">
                     </div>
                     <div class="col-md-6">
-                      <input required id="nama_saksi_II" name="nama_saksi_II" type="text" class="form-control" placeholder="nama saksi 2" readonly>
+                      <input required id="nama_saksi_II" name="nama_saksi_II" type="text" class="form-control" value="<?=set_value('nama_saksi_II')?>" placeholder="nama saksi 2" readonly>
+                      <input type="hidden" id="id_saksi_II" name="id_saksi_II" type="text" class="form-control" value="<?=set_value('id_saksi_II')?>">
                     </div>
                   </div>
                 </div>
@@ -228,7 +232,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <script>
+<script>
   
   function getdata(input)
   {
@@ -237,6 +241,7 @@
         if(data != null)
         {
           $('#nama_' + input.id).val(data.nama);
+          $('#id_' + input.id).val(data.id_penduduk);
         }
         else
         {

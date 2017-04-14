@@ -10,7 +10,21 @@ class Pendatang_model extends CI_Model {
 
 	public function getpendatang()
 	{
-		$query = $this->db->query('select p.*, tp.nama as nama_penduduk, mp.provinsi, mk.kabupaten, mkc.kecamatan, md.desa, mb.banjar from t_pendatang p inner join t_penduduk tp on tp.id_penduduk=p.id_penduduk inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan inner join m_desa md on md.id_desa=p.id_desa inner join m_banjar mb on mb.id_banjar=p.id_banjar');
+		$query = $this->db->query('select p.*, 
+			tp.nama as nama_penduduk, 
+			mp.provinsi, 
+			mk.kabupaten, 
+			mkc.kecamatan, 
+			md.desa, 
+			mb.banjar 
+			from t_pendatang p 
+			inner join t_penduduk tp on tp.id_penduduk=p.id_penduduk 
+			inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi 
+			inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten 
+			inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan 
+			inner join m_desa md on md.id_desa=p.id_desa 
+			inner join m_banjar mb on mb.id_banjar=p.id_banjar
+			where p.status <> 0');
 
 		if($query->num_rows() > 0)
 		{
@@ -24,9 +38,92 @@ class Pendatang_model extends CI_Model {
 
 	public function getdetailpendatang($id)
 	{
-		$query = $this->db->query('select p.*, tp.nama as nama_penduduk, mp.provinsi, mk.kabupaten, mkc.kecamatan, md.desa, mb.banjar from t_pendatang p inner join t_penduduk tp on tp.id_penduduk=p.id_penduduk inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan inner join m_desa md on md.id_desa=p.id_desa inner join m_banjar mb on mb.id_banjar=p.id_banjar where p.id_pendatang='.$id);
+		$query = $this->db->query('select p.*, 
+			tp.nama as nama_penduduk, 
+			mp.provinsi, mk.kabupaten, 
+			mkc.kecamatan, 
+			md.desa, 
+			mb.banjar 
+			from t_pendatang p 
+			inner join t_penduduk tp on tp.id_penduduk=p.id_penduduk 
+			inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi 
+			inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten 
+			inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan 
+			inner join m_desa md on md.id_desa=p.id_desa 
+			inner join m_banjar mb on mb.id_banjar=p.id_banjar 
+			where p.id_pendatang='.$id);
 
 		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getprovinsi()
+	{
+		$query = $this->db->query('select * from m_provinsi');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getkabupaten()
+	{
+		$query = $this->db->query('select * from m_kabupaten');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getkecamatan()
+	{
+		$query = $this->db->query('select * from m_kecamatan');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getdesa()
+	{
+		$query = $this->db->query('select * from m_desa');
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getbanjar()
+	{
+		$query = $this->db->query('select * from m_banjar');
+
+		if($query->num_rows() > 0)
 		{
 			return $query->result();
 		}

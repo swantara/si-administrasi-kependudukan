@@ -10,6 +10,38 @@
 
     <!-- Main content -->
     <section class="content">
+      <?php 
+        if($this->session->flashdata('alert') !== null):
+          if($this->session->flashdata('alert') == 'save'):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-success alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Tambahkan</h6>    
+      </div>
+      <!-- /info alert -->
+      <?php
+          elseif($this->session->flashdata('alert') == "update"):
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-info alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Ubah</h6>  
+      </div>
+      <!-- /info alert -->
+      <?php
+          else:
+      ?>
+      <!-- Info alert -->
+      <div id="alert" class="alert alert-danger alert-styled-left alert-arrow-left alert-component animated shake">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h6 class="alert-heading text-semibold">Data Berhasil di Hapus</h6>
+      </div>
+      <!-- /info alert -->
+      <?php
+          endif;
+        endif;
+      ?>
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -22,6 +54,7 @@
                 <thead>
                 <tr>
                   <th>NIK</th>
+                  <th>Nama</th>
                   <th>Kewarganegaraan</th>
                   <th>Nama Ibu</th>
                   <th>Nama Ayah</th>
@@ -39,7 +72,8 @@
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
                   <td><?=$row->nik?></td>
-                  <td><?=$row->nama?></td>
+                  <td><?=$row->nama_penduduk?></td>
+                  <td><?=$row->kewarganegaraan?></td>
                   <td><?=$row->nama_ibu?></td>
                   <td><?=$row->nama_ayah?></td>
                   <td><?=$row->nama_saksi1?></td>
@@ -72,6 +106,7 @@
                 <tfoot>
                 <tr>
                   <th>NIK</th>
+                  <th>Nama</th>
                   <th>Kewarganegaraan</th>
                   <th>Nama Ibu</th>
                   <th>Nama Ayah</th>

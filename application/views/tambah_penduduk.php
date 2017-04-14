@@ -21,7 +21,7 @@
                 <img style="margin: 0 auto;" class="img-responsive" src="<?=base_url()?>assets/dist/img/no-image.jpg" alt="Program Picture">
                 <hr>
                 <lavel>Browse Foto :</lavel>
-                <input required name="foto" type="file" id="fotoArtikel">
+                <input name="foto" type="file" id="fotoArtikel">
               </div>
               <!-- /.box-body -->
             </div>
