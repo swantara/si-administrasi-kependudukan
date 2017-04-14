@@ -23,6 +23,8 @@ class Pendatang extends CI_Controller {
 
 	public function tambah()
 	{
+		$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+		$this->form_validation->set_rules('nama_penduduk', 'Nama Penduduk', 'trim|required');
 		$this->form_validation->set_rules('alamat_asal', 'Alamat Asal', 'trim|required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
 

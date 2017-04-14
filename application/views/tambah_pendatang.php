@@ -22,45 +22,112 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="form-group">
-                  <label>NIK</label>
-                  <input required name="nik" type="text" class="form-control" placeholder="Masukan Nomor Induk Kependudukan">
-                </div>
-                <div class="form-group">
-                  <label>Nama</label>
-                  <input required name="nama_penduduk" type="text" class="form-control" placeholder="Masukan Nama">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>NIK</label>
+                      <input id="penduduk" required name="nik" type="text" class="form-control" value="<?=set_value('nik')?>"  placeholder="Masukan Nomor Induk Kependudukan" onblur="getdata(this)">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Nama</label>
+                      <input required readonly id="nama_penduduk" name="nama_penduduk" type="text" class="form-control" value="<?=set_value('nama_penduduk')?>" placeholder="Nama Penduduk">
+                      <input type="hidden" id="id_penduduk" name="id_penduduk" type="text" class="form-control" value="<?=set_value('id_penduduk')?>">
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Alamat Asal</label>
-                  <input required name="alamat_asal" type="text" class="form-control" placeholder="Masukan Alamat">
+                  <input required name="alamat_asal" type="text" class="form-control" value="<?=set_value('alamat_asal')?>" placeholder="Masukan Alamat">
                 </div>
-                <div class="form-group">
-                  <label>Banjar</label>
-                  <input required name="banjar" type="text" class="form-control" placeholder="Nama Banjar">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Provinsi</label>
+                      <select required name="provinsi" class="form-control">
+                        <?php
+                          if(is_object($provinsi) || is_array($provinsi)) :
+                            foreach ($provinsi as $row) :
+                        ?>
+                        <option <?=set_select('provinsi', $row->id_provinsi)?> value="<?=$row->id_provinsi?>"><?=$row->provinsi?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>                    
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Kabupaten</label>
+                      <select required name="kabupaten" class="form-control">
+                        <?php
+                          if(is_object($kabupaten) || is_array($kabupaten)) :
+                            foreach ($kabupaten as $row) :
+                        ?>
+                        <option <?=set_select('kabupaten', $row->id_kabupaten)?> value="<?=$row->id_kabupaten?>"><?=$row->kabupaten?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Kecamatan</label>
+                      <select required name="kecamatan" class="form-control">
+                        <?php
+                          if(is_object($kecamatan) || is_array($kecamatan)) :
+                            foreach ($kecamatan as $row) :
+                        ?>
+                        <option <?=set_select('kecamatan', $row->id_kecamatan)?> value="<?=$row->id_kecamatan?>"><?=$row->kecamatan?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                  <div class="form-group">
-                  <label>Desa</label>
-                  <input required name="desa" type="text" class="form-control" placeholder="Nama Desa">
-                </div>
-                  <div class="form-group">
-                  <label>Banjar</label>
-                  <input required name="banjar" type="text" class="form-control" placeholder="Nama Banjar">
-                </div>
-                  <div class="form-group">
-                  <label>Kecamatan</label>
-                  <input required name="kecamatan" type="text" class="form-control" placeholder="Nama Kecamatan">
-                </div>
-                  <div class="form-group">
-                  <label>Kabupaten</label>
-                  <input required name="kabupaten" type="text" class="form-control" placeholder="Nama Kabupaten">
-                </div>
-                  <div class="form-group">
-                  <label>Provinsi</label>
-                  <input required name="provinsi" type="text" class="form-control" placeholder="Nama Provinsi">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Desa</label>
+                      <select required name="desa" class="form-control">
+                        <?php
+                          if(is_object($desa) || is_array($desa)) :
+                            foreach ($desa as $row) :
+                        ?>
+                        <option <?=set_select('desa', $row->id_desa)?> value="<?=$row->id_desa?>"><?=$row->desa?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Banjar</label>
+                      <select required name="banjar" class="form-control">
+                        <?php
+                          if(is_object($banjar) || is_array($banjar)) :
+                            foreach ($banjar as $row) :
+                        ?>
+                        <option <?=set_select('banjar', $row->id_banjar)?> value="<?=$row->id_banjar?>"><?=$row->banjar?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Keterangan</label>
-                  <input required name="keternagan_pindah" type="text" class="form-control" placeholder="Keterangan">
+                  <input required name="keterangan" type="text" class="form-control" value="<?=set_value('keterangan')?>" placeholder="Keterangan">
                 </div>
               </div>
               <!-- /.box-body -->
@@ -78,3 +145,23 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<script>
+  
+  function getdata(input)
+  {
+    $.getJSON( "<?=site_url('penduduk/ajaxgetdetailbynik/')?>" + input.value)
+      .done(function( data ) {
+        if(data != null)
+        {
+          $('#nama_' + input.id).val(data.nama);
+          $('#id_' + input.id).val(data.id_penduduk);
+        }
+        else
+        {
+          $('#nama_' + input.id).val('Data tidak ditemukan');
+        }
+      });
+  }
+
+</script>

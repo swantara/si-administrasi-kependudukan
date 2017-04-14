@@ -10,7 +10,13 @@ class Kelahiran_model extends CI_Model {
 
 	public function getkelahiran()
 	{
-		$query = $this->db->query('select k.*, p.nama as nama_penduduk, p.nik as nik, pa.nama as nama_ibu, pb.nama as nama_ayah, pc.nama as nama_saksi1, pd.nama as nama_saksi2 
+		$query = $this->db->query('select k.*, 
+			p.nama as nama_penduduk, 
+			p.nik as nik, p
+			a.nama as nama_ibu, 
+			pb.nama as nama_ayah, 
+			pc.nama as nama_saksi1, 
+			pd.nama as nama_saksi2 
 			from t_kelahiran k 
 			inner join t_penduduk p on p.id_penduduk=k.id_penduduk 
 			inner join t_penduduk pa on pa.id_penduduk=k.id_ibu 
@@ -31,7 +37,17 @@ class Kelahiran_model extends CI_Model {
 
 	public function getdetailkelahiran($id)
 	{
-		$query = $this->db->query('select k.*, p.nama as nama_penduduk, p.nik as nik, p.no_kk, p.pekerjaan, p.periode_data as periode_data, p.foto as foto, p.tgl_lahir, p.tempat_lahir, p.jk, p.alamat_saat_ini, p.status_kk, p.id_agama, p.id_pendidikan, p.telepon, p.status_kawin, p.status_kependudukan, pa.nama as nama_ibu, pa.nik as nik_ibu, pb.nama as nama_ayah, pb.nik as nik_ayah, pc.nama as nama_saksi1, pc.nik as nik_saksi1, pd.nama as nama_saksi2, pd.nik as nik_saksi2, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk 
+		$query = $this->db->query('select k.*, 
+			p.nama as nama_penduduk, p.nik as nik, p.no_kk, p.pekerjaan, p.periode_data as periode_data, p.foto as foto, p.tgl_lahir, p.tempat_lahir, p.jk, p.alamat_saat_ini, p.status_kk, p.id_agama, p.id_pendidikan, p.telepon, p.status_kawin, p.status_kependudukan, 
+			pa.nama as nama_ibu, pa.nik as nik_ibu, 
+			pb.nama as nama_ayah, pb.nik as nik_ayah, 
+			pc.nama as nama_saksi1, pc.nik as nik_saksi1, 
+			pd.nama as nama_saksi2, pd.nik as nik_saksi2, 
+			s.shdk as status_keluarga, 
+			a.agama, 
+			pt.pend_akhir as pendidikan, 
+			sk.status_kawin as status_perkawinan, 
+			skp.status_kependudukan as status_penduduk 
 			from t_kelahiran k 
 			inner join t_penduduk p on p.id_penduduk=k.id_penduduk 
 			inner join t_penduduk pa on pa.id_penduduk=k.id_ibu 
@@ -135,7 +151,7 @@ class Kelahiran_model extends CI_Model {
 		//ambil data admin yang menginputkan data
 		$data_session = $this->session->userdata('session');
 		$id_user = 1; //$data_session['id_user'];
-		$id_penduduk = $this -> input -> post('id_penduduk'); //$data_session['id_user'];
+		$id_penduduk = $this -> input -> post('id_penduduk');
 
 		if($_FILES['foto']['error'] != 4)
 		{

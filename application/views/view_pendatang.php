@@ -84,17 +84,17 @@
                   <td><?=$row->keterangan?></td>
                   <td>
                     <div class="btn-group-vertical">
-                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/detail/'.$row->id_kelahiran)?>'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/detail/'.$row->id_pendatang)?>'">
                         <div class="pull-left">
                           <i class="fa fa-eye"></i> Detail
                         </div>
                       </button>
-                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/edit/'.$row->id_kelahiran)?>'">
+                      <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('pendatang/edit/'.$row->id_pendatang)?>'">
                         <div class="pull-left">
                           <i class="fa fa-edit"></i> Ubah
                         </div>
                       </button>
-                      <button type="button" class="btn btn-danger" onClick="window.location.href='<?=site_url('pendatang/hapus/'.$row->id_kelahiran)?>'">
+                      <button type="button" class="btn btn-danger" onClick="window.location.href='<?=site_url('pendatang/hapus/'.$row->id_pendatang)?>'">
                         <div class="pull-left">
                           <i class="fa fa-trash"></i> Hapus
                         </div>
