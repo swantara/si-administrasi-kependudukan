@@ -4,14 +4,14 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Edit Data Penduduk</small>
+        <small>Edit Data Kematian</small>
       </h1>
     </section>
 
     <!-- Main content -->
       <section class="content">
         <div class="row">
-        <?php echo form_open('penduduk/edit/'.$data->id_penduduk, array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
+        <?php echo form_open('kematian/edit/'.$data->id_kematian, array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
         <?php echo validation_errors();?>
           <div class="col-md-3">
             <!-- Profile Image -->
@@ -48,7 +48,7 @@
             <!-- About Me Box -->
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Edit Data Penduduk</h3>
+                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Edit Data Kematian</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="form-group">
                   <label>Nama</label>
-                  <input required name="nama" type="text" class="form-control" value="<?=$data->nama?>">
+                  <input required name="nama" type="text" class="form-control" value="<?=$data->nama_penduduk?>">
                 </div>                
                 <div class="row">
                   <div class="col-md-4">
@@ -101,8 +101,7 @@
                             $date=date_create($data->tgl_lahir);
                             $newdate=date_format($date,"d-m-Y");
                             echo $newdate; 
-                          ?>
-                        ">
+                          ?>">
                       </div>
                     </div>
                   </div>
@@ -152,11 +151,11 @@
                 </div>
                 <div class="form-group">
                   <label>Pekerjaan</label>
-                  <input required name="pekerjaan" type="text" class="form-control" value="<?=$data->pekerjaan?>">
+                  <input name="pekerjaan" type="text" class="form-control" value="<?=$data->pekerjaan?>">
                 </div>
                 <div class="form-group">
                   <label>Telepon</label>
-                  <input required name="telepon" type="text" class="form-control" value="<?=$data->telepon?>">
+                  <input name="telepon" type="text" class="form-control" value="<?=$data->telepon?>">
                 </div>
                 <div class="form-group">
                   <label>Status Perkawinan</label>
@@ -172,14 +171,6 @@
                       endif;
                     ?>
                   </select>
-                </div>
-                <div class="form-group">
-                  <label>Nama Ayah</label>
-                  <input required name="nama_ayah" type="text" class="form-control" value="<?=$data->nama_ayah?>">
-                </div>
-                <div class="form-group">
-                  <label>Nama Ibu</label>
-                  <input required name="nama_ibu" type="text" class="form-control" value="<?=$data->nama_ibu?>">
                 </div>
                 <div class="form-group">
                   <label>Kewarganegaraan</label>
@@ -200,9 +191,42 @@
                     ?>
                   </select>
                 </div>
+                <hr/>
+                <div class="form-group">
+                  <label>Penyebab Meninggal</label>
+                  <input required name="penyebab" type="text" class="form-control" value="<?=$data->penyebab?>">
+                </div>                
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tempat Meninggal</label>
+                      <input required name="tempat_meninggal" type="text" class="form-control" value="<?=$data->tempat_meninggal?>">
+                    </div>                   
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tanggal Kematian</label><br>
+                      <div class='input-group date'>
+                        <div class='input-group-addon'>
+                          <i class='fa fa-calendar'></i>
+                        </div>
+                        <input required name="tanggal_meninggal" type='text' class='form-control pull-right' id='datepicker2' value="<?php
+                          $date=date_create($data->tgl_meninggal);
+                          $newdate=date_format($date,"d-m-Y");
+                          echo $newdate; 
+                        ?>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Keterangan</label>
+                  <input required name="keterangan" type="text" class="form-control" value="<?=$data->keterangan?>">
+                </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
+                <input type="hidden" name="id_penduduk" type="text" class="form-control" value="<?=$data->id_penduduk?>">
                 <a href="<?=site_url('penduduk')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-check text-green"></i> Submit</button>
               </div>

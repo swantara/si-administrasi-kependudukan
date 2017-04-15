@@ -10,7 +10,22 @@ class Pindah_model extends CI_Model {
 
 	public function getpindah()
 	{
-		$query = $this->db->query('select p.*, mp.provinsi, mk.kabupaten, mkc.kecamatan, md.desa, mb.banjar from t_pindah p inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan inner join m_desa md on md.id_desa=p.id_desa inner join m_banjar mb on mb.id_banjar=p.id_banjar');
+		$query = $this->db->query('select p.*, 
+			tp.nama as nama_penduduk, tp.nik, tp.nama as nama_kepala_keluarga, tp.status_kk,
+			mp.provinsi, 
+			mk.kabupaten, 
+			mkc.kecamatan, 
+			md.desa, 
+			mb.banjar 
+			from t_pindah p 
+			inner join t_penduduk tp on tp.no_kk=p.no_kk 
+			inner join m_provinsi mp on mp.id_provinsi=p.id_provinsi 
+			inner join m_kabupaten mk on mk.id_kabupaten=p.id_kabupaten 
+			inner join m_kecamatan mkc on mkc.id_kecamatan=p.id_kecamatan 
+			inner join m_desa md on md.id_desa=p.id_desa 
+			inner join m_banjar mb on mb.id_banjar=p.id_banjar
+			where p.status <> 0
+			and tp.status_kk = 1');
 
 		if($query->num_rows() > 0)
 		{
@@ -104,5 +119,31 @@ class Pindah_model extends CI_Model {
 
 		$this->session->set_flashdata('alert','delete');
 		return true;
+	}
+
+	public function getkepalakeluargabynkk($nkk)
+	{
+		$query = $this->db->query('select p.*, 
+			s.shdk as status_keluarga, 
+			a.agama, 
+			pt.pend_akhir as pendidikan, 
+			sk.status_kawin as status_perkawinan, 
+			skp.status_kependudukan as status_penduduk 
+			from t_penduduk p 
+			inner join m_shdk s on s.id_shdk=p.status_kk 
+			inner join m_agama a on a.id_agama=p.id_agama 
+			inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan 
+			left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin 
+			left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan 
+			where p.status_kk=1 and p.no_kk='.$nkk);
+
+		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

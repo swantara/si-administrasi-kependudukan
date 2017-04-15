@@ -7,6 +7,7 @@ class Kematian extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('kematian_model', 'kematian', true);
+		$this->load->model('penduduk_model', 'penduduk', true);
 
 		// if(!$this->session->userdata('session'))
   //  		{
@@ -54,6 +55,11 @@ class Kematian extends CI_Controller {
 		
 		if($this->form_validation->run() === false)
 		{
+			$data['shdk'] = $this->penduduk->getshdkexclude('1');
+			$data['agama'] = $this->penduduk->getagamaexclude('1');
+			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
+			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
+			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
 			$data['data'] = $this->kematian->getdetailkematian($id)[0];
 			$data['body'] = $this->load->view('edit_kematian', $data, true);
 			$this->load->view('template', $data);
@@ -61,7 +67,7 @@ class Kematian extends CI_Controller {
 		else
 		{
 			$this->kematian->edit($id);
-			redirect('kematian','refresh');
+			redirect('kematian/detail/'.$id,'refresh');
 		}
 	}
 

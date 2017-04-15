@@ -184,6 +184,10 @@ function export() {
       autoclose: true,
       format: 'dd-mm-yyyy'
     });
+    $('#datepicker2').datepicker({
+      autoclose: true,
+      format: 'dd-mm-yyyy'
+    });
   } );
 </script>
 </body>

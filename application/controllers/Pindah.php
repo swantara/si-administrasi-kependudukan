@@ -7,6 +7,7 @@ class Pindah extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('pindah_model', 'pindah', true);
+		$this->load->model('pendatang_model', 'pendatang', true);
 
 		// if(!$this->session->userdata('session'))
   //  		{
@@ -29,7 +30,12 @@ class Pindah extends CI_Controller {
 
 		if($this->form_validation->run() === false)
 		{
-			$data['body'] = $this->load->view('tambah_pindah', '', true);
+			$data['provinsi'] = $this->pendatang->getprovinsi();
+			$data['kabupaten'] = $this->pendatang->getkabupaten();
+			$data['kecamatan'] = $this->pendatang->getkecamatan();
+			$data['desa'] = $this->pendatang->getdesa();
+			$data['banjar'] = $this->pendatang->getbanjar();
+			$data['body'] = $this->load->view('tambah_pindah', $data, true);
 			$this->load->view('template', $data);
 		}
 		else
@@ -44,6 +50,13 @@ class Pindah extends CI_Controller {
 		$data['data'] = $this->pindah->getdetailpindah($id);
 		$data['body'] = $this->load->view('detail_pindah', $data, true);
 		$this->load->view('template', $data);
+	}
+
+	public function ajaxgetkepalakeluargabynkk($nkk)
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pindah->getkepalakeluargabynkk($nkk)[0]);
+		}
 	}
 
 	public function edit($id)

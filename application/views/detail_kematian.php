@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Detail Data Pendatang</small>
+        <small>Detail Data Kematian</small>
       </h1>
     </section>
 
@@ -69,7 +69,7 @@
 
                 alt="Program Picture">
                 <hr/>
-                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('pendatang/edit/'.$row->id_pendatang)?>'">
+                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('kematian/edit/'.$row->id_kematian)?>'">
                   <i class="fa fa-edit"></i> Edit
                 </button>
               </div>
@@ -149,23 +149,23 @@
                 <strong>SHDK</strong>
                 <p><?=$row->status_keluarga?></p>
                 <hr/>
-                <strong>Alamat Asal</strong>
-                <p><?=$row->alamat_asal?></p>
+                <strong>Tempat Meninggal</strong>
+                <p><?=$row->tempat_meninggal?></p>
                 <hr/>
-                <strong>Provinsi Asal</strong>
-                <p><?=$row->provinsi?></p>
+                <strong>Tanggal Meninggal</strong>
+                <p>
+                  <?php
+                    $date=date_create($row->tgl_meninggal);
+                    $newdate=date_format($date,"d-m-Y");
+                    echo $newdate;
+                  ?>
+                </p>
                 <hr/>
-                <strong>Kabupaten Asal</strong>
-                <p><?=$row->kabupaten?></p>
+                <strong>Penyebab Meninggal</strong>
+                <p><?=$row->penyebab?></p>
                 <hr/>
-                <strong>Kecamatan Asal</strong>
-                <p><?=$row->kecamatan?></p>
-                <hr/>
-                <strong>Desa Asal</strong>
-                <p><?=$row->desa?></p>
-                <hr/>
-                <strong>Banjar Asal</strong>
-                <p><?=$row->banjar?></p>
+                <strong>Keterangan</strong>
+                <p><?=$row->keterangan?></p>
               </div>
               <!-- /.box-body -->
             </div>

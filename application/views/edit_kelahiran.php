@@ -245,7 +245,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                 <input type="hidden" name="id_penduduk" type="text" class="form-control" value="<?=$data->id_penduduk?>">
-                <a href="<?=site_url('penduduk/detail')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
+                <a href="<?=site_url('kelahiran')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-check text-green"></i> Submit</button>
               </div>
             </div>
