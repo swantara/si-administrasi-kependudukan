@@ -8,6 +8,7 @@ class Pindah extends CI_Controller {
 		parent::__construct();
 		$this->load->model('pindah_model', 'pindah', true);
 		$this->load->model('pendatang_model', 'pendatang', true);
+		$this->load->model('penduduk_model', 'penduduk', true);
 
 		// if(!$this->session->userdata('session'))
   //  		{
@@ -67,6 +68,15 @@ class Pindah extends CI_Controller {
 		
 		if($this->form_validation->run() === false)
 		{
+			$data['provinsi'] = $this->pendatang->getprovinsiexclude('1');
+			$data['kabupaten'] = $this->pendatang->getkabupatenexclude('1');
+			$data['kecamatan'] = $this->pendatang->getkecamatanexclude('1');
+			$data['desa'] = $this->pendatang->getdesaexclude('1');
+			$data['banjar'] = $this->pendatang->getbanjarexclude('1');
+			$data['agama'] = $this->penduduk->getagamaexclude('1');
+			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
+			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
+			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
 			$data['data'] = $this->pindah->getdetailpindah($id)[0];
 			$data['body'] = $this->load->view('edit_pindah', $data, true);
 			$this->load->view('template', $data);

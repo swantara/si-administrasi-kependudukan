@@ -4,21 +4,21 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Tambah Data Pendatang</small>
+        <small>Tambah Data Pindah</small>
       </h1>
     </section>
 
     <!-- Main content -->
       <section class="content">
         <div class="row">
-        <?php echo form_open('pendatang/tambah', array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
+        <?php echo form_open('pindah/tambah', array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
         <?php echo validation_errors();?>
           <!-- /.col -->
           <div class="col-md-12">
             <!-- About Me Box -->
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Pendatang</h3>
+                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Pindah</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -153,7 +153,7 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a href="<?=site_url('pendatang')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
+                <a href="<?=site_url('pindah')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-check text-green"></i> Submit</button>
               </div>
             </div>

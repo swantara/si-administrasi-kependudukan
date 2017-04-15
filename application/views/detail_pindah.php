@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Detail Data Pendatang</small>
+        <small>Detail Data Pindah</small>
       </h1>
     </section>
 
@@ -69,7 +69,7 @@
 
                 alt="Program Picture">
                 <hr/>
-                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('pendatang/edit/'.$row->id_pendatang)?>'">
+                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('pindah/edit/'.$row->id_pindah)?>'">
                   <i class="fa fa-edit"></i> Edit
                 </button>
               </div>
@@ -95,7 +95,7 @@
                 <strong>Periode Data</strong>
                 <p><?=$row->periode_data?></p>
                 <hr/>
-                <strong>Nama Lengkap</strong>
+                <strong>Nama Kepala Keluarga</strong>
                 <p><?=$row->nama_penduduk?></p>
                 <hr/>
                 <strong>TTL</strong>
@@ -149,22 +149,34 @@
                 <strong>SHDK</strong>
                 <p><?=$row->status_keluarga?></p>
                 <hr/>
-                <strong>Alamat Asal</strong>
-                <p><?=$row->alamat_asal?></p>
+                <strong>Tanggal Pindah</strong>
+                <p>
+                  <?php
+                    $date=date_create($row->tgl_pindah);
+                    $newdate=date_format($date,"d-m-Y");
+                    echo $newdate;
+                  ?>
+                </p>
                 <hr/>
-                <strong>Provinsi Asal</strong>
+                <strong>Alasan Pindah</strong>
+                <p><?=$row->alasan_pindah?></p>
+                <hr/>
+                <strong>Alamat Tujuan</strong>
+                <p><?=$row->alamat_tujuan?></p>
+                <hr/>
+                <strong>Provinsi Tujuan</strong>
                 <p><?=$row->provinsi?></p>
                 <hr/>
-                <strong>Kabupaten Asal</strong>
+                <strong>Kabupaten Tujuan</strong>
                 <p><?=$row->kabupaten?></p>
                 <hr/>
-                <strong>Kecamatan Asal</strong>
+                <strong>Kecamatan Tujuan</strong>
                 <p><?=$row->kecamatan?></p>
                 <hr/>
-                <strong>Desa Asal</strong>
+                <strong>Desa Tujuan</strong>
                 <p><?=$row->desa?></p>
                 <hr/>
-                <strong>Banjar Asal</strong>
+                <strong>Banjar Tujuan</strong>
                 <p><?=$row->banjar?></p>
                 <hr/>
                 <strong>Keterangan</strong>

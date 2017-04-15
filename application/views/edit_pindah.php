@@ -4,14 +4,14 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Edit Data Pendatang</small>
+        <small>Edit Data Pindah</small>
       </h1>
     </section>
 
     <!-- Main content -->
       <section class="content">
         <div class="row">
-        <?php echo form_open('pendatang/edit/'.$data->id_pendatang, array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
+        <?php echo form_open('pindah/edit/'.$data->id_pindah, array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
         <?php echo validation_errors();?>
           <div class="col-md-3">
             <!-- Profile Image -->
@@ -48,7 +48,7 @@
             <!-- About Me Box -->
             <div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Edit Data Pendatang</h3>
+                <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Edit Data Pindah</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -80,7 +80,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Nama</label>
+                  <label>Nama Kepala Keluarga</label>
                   <input required name="nama" type="text" class="form-control" value="<?=$data->nama_penduduk?>">
                 </div>                
                 <div class="row">
@@ -193,9 +193,35 @@
                   </select>
                 </div>
                 <hr/>
-                <div class="form-group">
-                  <label>Alamat Asal</label>
-                  <input required name="alamat_asal" type="text" class="form-control" value="<?=$data->alamat_asal?>">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tanggal Pindah</label><br>
+                      <div class='input-group date'>
+                        <div class='input-group-addon'>
+                          <i class='fa fa-calendar'></i>
+                        </div>
+                        <input required name="tanggal_pindah" type='text' class='form-control pull-right' id='datepicker' value="<?php
+                            $date=date_create($data->tgl_pindah);
+                            $newdate=date_format($date,"d-m-Y");
+                            echo $newdate; 
+                          ?>
+                        ">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Alasan Pindah</label>
+                      <input required name="alasan_pindah" type="text" class="form-control" value="<?=$data->alasan_pindah?>">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Alamat Tujuan</label>
+                      <input required name="alamat_tujuan" type="text" class="form-control" value="<?=$data->alamat_tujuan?>">
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-md-4">
@@ -293,8 +319,8 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <input type="hidden" name="id_penduduk" type="text" class="form-control" value="<?=$data->id_penduduk?>">
-                <a href="<?=site_url('pendatang')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
+                <input type="hidden" name="id_pindah" type="text" class="form-control" value="<?=$data->id_penduduk?>">
+                <a href="<?=site_url('pindah')?>" class="btn btn-default"><i class="fa fa-close"></i> Cancel</a>
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-check text-green"></i> Submit</button>
               </div>
             </div>
