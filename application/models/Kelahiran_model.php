@@ -12,8 +12,8 @@ class Kelahiran_model extends CI_Model {
 	{
 		$query = $this->db->query('select k.*, 
 			p.nama as nama_penduduk, 
-			p.nik as nik, p
-			a.nama as nama_ibu, 
+			p.nik as nik,
+			pa.nama as nama_ibu, 
 			pb.nama as nama_ayah, 
 			pc.nama as nama_saksi1, 
 			pd.nama as nama_saksi2 
