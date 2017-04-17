@@ -52,37 +52,51 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="form-group">
-                  <label>NIK</label>
-                  <input required name="nik" type="text" class="form-control" value="<?=$data->nik?>">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>NIK</label>
+                      <input required name="nik" type="text" class="form-control" value="<?=$data->nik?>">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>NKK</label>
+                      <input required name="nkk" type="text" class="form-control" value="<?=$data->no_kk?>">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Periode Data</label>
+                      <input required name="periode_data" type="text" class="form-control" value="<?=$data->periode_data?>">
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label>NKK</label>
-                  <input required name="nkk" type="text" class="form-control" value="<?=$data->no_kk?>">
-                </div>
-                <div class="form-group">
-                  <label>Periode Data</label>
-                  <input required name="periode_data" type="text" class="form-control" value="<?=$data->periode_data?>">
-                </div>
-                <div class="form-group">
-                  <label>Status Dalam Keluarga</label>
-                  <select required name="status_kk" class="form-control">
-                    <option value="<?=$data->status_kk?>" selected><?=$data->status_keluarga?></option>
-                    <?php
-                      if(is_object($shdk) || is_array($shdk)) :
-                        foreach ($shdk as $row) :
-                    ?>
-                    <option value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Nama</label>
-                  <input required name="nama" type="text" class="form-control" value="<?=$data->nama?>">
-                </div>                
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Nama</label>
+                      <input required name="nama" type="text" class="form-control" value="<?=$data->nama?>">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Status Dalam Keluarga</label>
+                      <select required name="status_kk" class="form-control">
+                        <option value="<?=$data->status_kk?>" selected><?=$data->status_keluarga?></option>
+                        <?php
+                          if(is_object($shdk) || is_array($shdk)) :
+                            foreach ($shdk as $row) :
+                        ?>
+                        <option value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>              
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
@@ -120,85 +134,109 @@
                   <label>Alamat</label>
                   <input required name="alamat" type="text" class="form-control" value="<?=$data->alamat_saat_ini?>">
                 </div>
-                <div class="form-group">
-                  <label>Agama</label>
-                  <select required name="agama" class="form-control">
-                    <option value="<?=$data->id_agama?>" selected><?=$data->agama?></option>
-                    <?php
-                      if(is_object($agama) || is_array($agama)) :
-                        foreach ($agama as $row) :
-                    ?>
-                    <option value="<?=$row->id_agama?>"><?=$row->agama?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Agama</label>
+                      <select required name="agama" class="form-control">
+                        <option value="<?=$data->id_agama?>" selected><?=$data->agama?></option>
+                        <?php
+                          if(is_object($agama) || is_array($agama)) :
+                            foreach ($agama as $row) :
+                        ?>
+                        <option value="<?=$row->id_agama?>"><?=$row->agama?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pendidikan</label>
+                      <select required name="pendidikan" class="form-control">
+                        <option value="<?=$data->id_pendidikan?>" selected><?=$data->pendidikan?></option>
+                        <?php
+                          if(is_object($pendidikan) || is_array($pendidikan)) :
+                            foreach ($pendidikan as $row) :
+                        ?>
+                        <option value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label>Pendidikan</label>
-                  <select required name="pendidikan" class="form-control">
-                    <option value="<?=$data->id_pendidikan?>" selected><?=$data->pendidikan?></option>
-                    <?php
-                      if(is_object($pendidikan) || is_array($pendidikan)) :
-                        foreach ($pendidikan as $row) :
-                    ?>
-                    <option value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pekerjaan</label>
+                      <input required name="pekerjaan" type="text" class="form-control" value="<?=$data->pekerjaan?>">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Telepon</label>
+                      <input required name="telepon" type="text" class="form-control" value="<?=$data->telepon?>">
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label>Pekerjaan</label>
-                  <input required name="pekerjaan" type="text" class="form-control" value="<?=$data->pekerjaan?>">
-                </div>
-                <div class="form-group">
-                  <label>Telepon</label>
-                  <input required name="telepon" type="text" class="form-control" value="<?=$data->telepon?>">
-                </div>
-                <div class="form-group">
-                  <label>Status Perkawinan</label>
-                  <select required name="status_kawin" class="form-control">
-                    <option value="<?=$data->status_kawin?>" selected><?=$data->status_perkawinan?></option>
-                    <?php
-                      if(is_object($kawin) || is_array($kawin)) :
-                        foreach ($kawin as $row) :
-                    ?>
-                    <option value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Nama Ayah</label>
-                  <input required name="nama_ayah" type="text" class="form-control" value="<?=$data->nama_ayah?>">
-                </div>
-                <div class="form-group">
-                  <label>Nama Ibu</label>
-                  <input required name="nama_ibu" type="text" class="form-control" value="<?=$data->nama_ibu?>">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Ayah</label>
+                      <input required name="nama_ayah" type="text" class="form-control" value="<?=$data->nama_ayah?>">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Ibu</label>
+                      <input required name="nama_ibu" type="text" class="form-control" value="<?=$data->nama_ibu?>">
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Kewarganegaraan</label>
                   <input required name="kewarganegaraan" type="text" class="form-control" value="<?=$data->kewarganegaraan?>">
                 </div>
-                <div class="form-group">
-                  <label>Status Kependudukan</label>
-                  <select required name="status_kependudukan" class="form-control">
-                    <option value="<?=$data->status_kependudukan?>" selected><?=$data->status_penduduk?></option>
-                    <?php
-                      if(is_object($kependudukan) || is_array($kependudukan)) :
-                        foreach ($kependudukan as $row) :
-                    ?>
-                    <option value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
-                    <?php
-                        endforeach;
-                      endif;
-                    ?>
-                  </select>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Status Kependudukan</label>
+                      <select required name="status_kependudukan" class="form-control">
+                        <option value="<?=$data->status_kependudukan?>" selected><?=$data->status_penduduk?></option>
+                        <?php
+                          if(is_object($kependudukan) || is_array($kependudukan)) :
+                            foreach ($kependudukan as $row) :
+                        ?>
+                        <option value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Status Perkawinan</label>
+                      <select required name="status_kawin" class="form-control">
+                        <option value="<?=$data->status_kawin?>" selected><?=$data->status_perkawinan?></option>
+                        <?php
+                          if(is_object($kawin) || is_array($kawin)) :
+                            foreach ($kawin as $row) :
+                        ?>
+                        <option value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /.box-body -->

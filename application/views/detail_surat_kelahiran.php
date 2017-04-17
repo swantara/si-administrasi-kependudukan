@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         SI Administrasi Kependudukan
-        <small>Detail Data Kelahiran</small>
+        <small>Detail Data Surat Kelahiran</small>
       </h1>
     </section>
 
@@ -54,14 +54,14 @@
                 <img style="margin: 0 auto;" class="img-responsive"
 
                 <?php
-                  if(is_null($row->foto) || $row->foto=="") :
+                  if(is_null($row->foto_anak) || $row->foto_anak=="") :
                 ?>
                 src="<?=base_url()?>assets/dist/img/no-image.jpg"
 
                 <?php
                   else:
                 ?>
-                src="<?=base_url()?>assets/img/fotopenduduk/<?=$row->foto?>"
+                src="<?=base_url()?>assets/img/fotopenduduk/<?=$row->foto_anak?>"
 
                 <?php
                   endif;
@@ -69,8 +69,11 @@
 
                 alt="Program Picture">
                 <hr/>
-                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('kelahiran/edit/'.$row->id_kelahiran)?>'">
-                  <i class="fa fa-edit"></i> Edit
+                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('surat_kelahiran/cetak/'.$row->id_surat_lahir)?>'">
+                  <i class="fa fa-print text-green"></i> Print Surat
+                </button>
+                <button type="button" class="btn btn-default btn-block" onClick="window.location.href='<?=site_url('surat_kelahiran')?>'">
+                  <i class="fa fa-reply"></i> Kembali
                 </button>
               </div>
               <!-- /.box-body -->
@@ -88,31 +91,34 @@
               <div class="box-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <strong>NIK</strong>
-                    <p><?=$row->nik?></p>
+                    <strong>Nomer Surat Kantor</strong>
+                    <p><?=$row->no_surat_kantor?></p>
                     <hr/>
-                    <strong>NKK</strong>
-                    <p><?=$row->no_kk?></p>
+                    <strong>Kepala Lingkungan</strong>
+                    <p><?=$row->nama_kaling?></p>
                     <hr/>
-                    <strong>Periode Data</strong>
-                    <p><?=$row->periode_data?></p>
+                    <strong>Nomer Surat Kaling</strong>
+                    <p><?=$row->no_surat_kaling?></p>
                     <hr/>
                     <strong>Nama Lengkap</strong>
-                    <p><?=$row->nama_penduduk?></p>
+                    <p><?php echo $row->nama_anak . " (" . $row->nik . ")"?></p>
                     <hr/>
-                    <strong>TTL</strong>
+                    <strong>Tempat Lahir</strong>
+                    <p><?=$row->tempat_lahir_anak?></p>
+                    <hr/>
+                    <strong>Tanggal Lahir</strong>
                     <p>
                       <?php
-                        $date=date_create($row->tgl_lahir);
+                        $date=date_create($row->tgl_lahir_anak);
                         $newdate=date_format($date,"d-m-Y");
-                        echo $row->tempat_lahir . ", " . $newdate;
+                        echo $newdate;
                       ?>
                     </p>
                     <hr/>
                     <strong>Jenis Kelamin</strong>
                     <p>
                       <?php
-                        if($row->jk == 1) :
+                        if($row->jk_anak == 1) :
                           echo "Laki-laki";
                         else:
                           echo "Perempuan";
@@ -120,108 +126,88 @@
                       ?>
                     </p>
                     <hr/>
-                    <strong>Telepon</strong>
-                    <p>
-                      <?php
-                        if(is_null($row->telepon) || $row->telepon=="") :
-                          echo "-";
-                        else:
-                          echo $row->telepon;
-                        endif;
-                      ?>
-                    </p>
-                    <hr/>
                     <strong>Alamat</strong>
                     <p>
                       <?php
-                        if(is_null($row->alamat_saat_ini) || $row->alamat_saat_ini=="") :
+                        if(is_null($row->alamat_anak) || $row->alamat_anak=="") :
                           echo "-";
                         else:
-                          echo $row->alamat_saat_ini;
+                          echo $row->alamat_anak;
                         endif;
                       ?>
                     </p>
-                    <hr/>
-                    <strong>Agama</strong>
-                    <p><?=$row->agama?></p>
                   </div>
                   <div class="col-md-6">
-                    <strong>Pekerjaan</strong>
-                    <p>
-                      <?php
-                        if(is_null($row->pekerjaan) || $row->pekerjaan=="") :
-                          echo "-";
-                        else:
-                          echo $row->pekerjaan;
-                        endif;
-                      ?>
-                    </p>
-                    <hr/>
-                    <strong>SHDK</strong>
-                    <p><?=$row->status_keluarga?></p>
-                    <hr/>
-                    <strong>Status Perkawinan</strong>
-                    <p>
-                      <?php
-                        if(is_null($row->status_perkawinan) || $row->status_perkawinan=="") :
-                          echo "-";
-                        else:
-                          echo $row->status_perkawinan;
-                        endif;
-                      ?>
-                    </p>
-                    <hr/>
-                    <strong>Status Kependudukan</strong>
-                    <p>
-                      <?php
-                        if(is_null($row->status_penduduk) || $row->status_penduduk=="") :
-                          echo "-";
-                        else:
-                          echo $row->status_penduduk;
-                        endif;
-                      ?>
-                    </p>
-                    <hr/>
                     <strong>Nama Ayah</strong>
+                    <p><?php echo $row->nama_ayah . " (" . $row->nik_ayah . ")"?></p>
+                    <hr/>
+                    <strong>Tempat Lahir Ayah</strong>
+                    <p><?=$row->tempat_lahir_ayah?></p>
+                    <hr/>
+                    <strong>Tanggal Lahir Ayah</strong>
                     <p>
                       <?php
-                        if(is_null($row->nama_ayah) || $row->nama_ayah=="") :
+                        $date=date_create($row->tgl_lahir_ayah);
+                        $newdate=date_format($date,"d-m-Y");
+                        echo $newdate;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Pekerjaan Ayah</strong>
+                    <p>
+                      <?php
+                        if(is_null($row->pekerjaan_ayah) || $row->pekerjaan_ayah=="") :
                           echo "-";
                         else:
-                          echo $row->nama_ayah . " (" . $row->nik_ayah . ")";
+                          echo $row->pekerjaan_ayah;
+                        endif;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Alamat Ayah</strong>
+                    <p>
+                      <?php
+                        if(is_null($row->alamat_ayah) || $row->alamat_ayah=="") :
+                          echo "-";
+                        else:
+                          echo $row->alamat_ayah;
                         endif;
                       ?>
                     </p>
                     <hr/>
                     <strong>Nama Ibu</strong>
+                    <p><?php echo $row->nama_ibu . " (" . $row->nik_ibu . ")"?></p>
+                    <hr/>
+                    <strong>Tempat Lahir Ibu</strong>
+                    <p><?=$row->tempat_lahir_ibu?></p>
+                    <hr/>
+                    <strong>Tanggal Lahir Ibu</strong>
                     <p>
                       <?php
-                        if(is_null($row->nama_ibu) || $row->nama_ibu=="") :
+                        $date=date_create($row->tgl_lahir_ibu);
+                        $newdate=date_format($date,"d-m-Y");
+                        echo $newdate;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Pekerjaan Ibu</strong>
+                    <p>
+                      <?php
+                        if(is_null($row->pekerjaan_ibu) || $row->pekerjaan_ibu=="") :
                           echo "-";
                         else:
-                          echo $row->nama_ibu . " (" . $row->nik_ibu . ")";
+                          echo $row->pekerjaan_ibu;
                         endif;
                       ?>
                     </p>
                     <hr/>
-                    <strong>Nama Saksi I</strong>
+                    <strong>Alamat Ibu</strong>
                     <p>
                       <?php
-                        if(is_null($row->nama_saksi1) || $row->nama_saksi1=="") :
+                        if(is_null($row->alamat_ibu) || $row->alamat_ibu=="") :
                           echo "-";
                         else:
-                          echo $row->nama_saksi1  . " (" . $row->nik_saksi1 . ")";
-                        endif;
-                      ?>
-                    </p>
-                    <hr/>
-                    <strong>Nama Saksi II</strong>
-                    <p>
-                      <?php
-                        if(is_null($row->nama_saksi2) || $row->nama_saksi2=="") :
-                          echo "-";
-                        else:
-                          echo $row->nama_saksi2  . " (" . $row->nik_saksi2 . ")";
+                          echo $row->alamat_ibu;
                         endif;
                       ?>
                     </p>

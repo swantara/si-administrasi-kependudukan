@@ -100,7 +100,7 @@
             <i class="fa icon-wallet"></i> <span> Surat</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Kelahiran</a></li>
+            <li><a href="<?=site_url('surat_kelahiran')?>"><i class="fa icon-arrow-right"></i> SK Kelahiran</a></li>
             <li><a href="#"><i class="fa icon-arrow-right"></i> SK Pendatang</a></li>
             <li><a href="#"><i class="fa icon-arrow-right"></i> SK Kematian</a></li>
             <li><a href="#"><i class="fa icon-arrow-right"></i> SK Pindah</a></li>

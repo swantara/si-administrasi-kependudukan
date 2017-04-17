@@ -52,14 +52,20 @@ class Penduduk_model extends CI_Model {
 
 	public function getdetailpendudukbynik($nik)
 	{
-		$query = $this->db->query('select p.*, s.shdk as status_keluarga, a.agama, pt.pend_akhir as pendidikan, sk.status_kawin as status_perkawinan, skp.status_kependudukan as status_penduduk 
+		$query = $this->db->query('select p.*, 
+			s.shdk as status_keluarga, 
+			a.agama, 
+			pt.pend_akhir as pendidikan, 
+			sk.status_kawin as status_perkawinan, 
+			skp.status_kependudukan as status_penduduk 
 			from t_penduduk p 
 			inner join m_shdk s on s.id_shdk=p.status_kk 
 			inner join m_agama a on a.id_agama=p.id_agama 
 			inner join m_pendidikan_terakhir as pt on pt.id_pendidikan=p.id_pendidikan 
 			left join m_status_kawin as sk on sk.id_status_kawin=p.status_kawin 
 			left join m_status_kependudukan as skp on skp.id_status_kependudukan=p.status_kependudukan 
-			where p.nik='.$nik);
+			where p.status <> 0 
+			and p.nik='.$nik);
 
 		if($query->num_rows() == 1)
 		{
