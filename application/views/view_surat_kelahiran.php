@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Data Surat Kelahiran</small>
+        Data Surat Kelahiran |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -44,22 +44,24 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <a href="<?=site_url('surat_kelahiran/tambah')?>" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Data</a>
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <a style="margin-right: 5px;" href="<?=site_url('surat_kelahiran/tambah')?>" class="btn btn-default"><i class="fa fa-user-plus text-green"></i> Tambah Data</a>
+              <a href="<?=site_url('surat_kelahiran/pencarian')?>" class="btn btn-default"><i class="fa fa-search text-blue"></i> Pencarian Lanjutan</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NIK</th>
-                  <th>Nama</th>
                   <th>Tanggal Surat</th>
+                  <th>No Kartu Penduduk</th>
+                  <th>No Induk Kependudukan</th>
+                  <th>Nama</th>
                   <th>Nama Kaling</th>
                   <th>No Surat Kaling</th>
                   <th>No Surat Kantor</th>
-                  <th style="width: 10px;">Act</th>
+                  <th style="width: 10px;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,8 +71,6 @@
                     foreach ($data as $row) :
                 ?>
                 <tr>
-                  <td><?=$row->nik?></td>
-                  <td><?=$row->nama_anak?></td>
                   <td>
                     <?php
                       $date=date_create($row->tgl_surat);
@@ -78,6 +78,9 @@
                       echo $newdate;
                     ?>
                   </td>
+                  <td><?=$row->no_kk?></td>
+                  <td><?=$row->nik?></td>
+                  <td><?=$row->nama_anak?></td>
                   <td><?=$row->nama_kaling?></td>
                   <td><?=$row->no_surat_kaling?></td>
                   <td><?=$row->no_surat_kantor?></td>
@@ -109,13 +112,14 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>NIK</th>
-                  <th>Nama</th>
                   <th>Tanggal Surat</th>
+                  <th>No Kartu Penduduk</th>
+                  <th>No Induk Kependudukan</th>
+                  <th>Nama</th>
                   <th>Nama Kaling</th>
                   <th>No Surat Kaling</th>
                   <th>No Surat Kantor</th>
-                  <th>Act</th>
+                  <th>Aksi</th>
                 </tr>
                 </tfoot>
               </table>

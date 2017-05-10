@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Tambah Data Surat Kelahiran</small>
+        Tambah Data Surat Kelahiran |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -16,7 +16,7 @@
           <!-- /.col -->
           <div class="col-md-12">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Surat Kelahiran</h3>
               </div>
@@ -53,6 +53,12 @@
                     <div class="form-group">
                       <label>No Surat Kantor</label>
                       <input required name="no_surat_kantor" type="text" class="form-control" value="<?=set_value('no_surat_kantor')?>" placeholder="No Surat Kantor">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>No Surat Terakhir</label>
+                      <input readonly type="text" class="form-control" value="lalala">
                     </div>
                   </div>
                 </div>

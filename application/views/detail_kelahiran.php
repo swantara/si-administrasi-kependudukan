@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Detail Data Kelahiran</small>
+        Detail Kelahiran |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -49,7 +49,7 @@
         ?>
           <div class="col-md-3">
             <!-- Profile Image -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-body box-profile">
                 <img style="margin: 0 auto;" class="img-responsive"
 
@@ -80,7 +80,7 @@
           <!-- /.col -->
           <div class="col-md-9">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-quote-right margin-r-5"></i> Deskripsi</h3>
               </div>
@@ -88,10 +88,10 @@
               <div class="box-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <strong>NIK</strong>
+                    <strong>No Induk Kependudukan</strong>
                     <p><?=$row->nik?></p>
                     <hr/>
-                    <strong>NKK</strong>
+                    <strong>No Kartu Keluarga</strong>
                     <p><?=$row->no_kk?></p>
                     <hr/>
                     <strong>Periode Data</strong>
@@ -100,7 +100,7 @@
                     <strong>Nama Lengkap</strong>
                     <p><?=$row->nama_penduduk?></p>
                     <hr/>
-                    <strong>TTL</strong>
+                    <strong>Tempat/Tanggal Lahir</strong>
                     <p>
                       <?php
                         $date=date_create($row->tgl_lahir);
@@ -157,7 +157,7 @@
                       ?>
                     </p>
                     <hr/>
-                    <strong>SHDK</strong>
+                    <strong>Status Hubungan Dalam Keluarga</strong>
                     <p><?=$row->status_keluarga?></p>
                     <hr/>
                     <strong>Status Perkawinan</strong>

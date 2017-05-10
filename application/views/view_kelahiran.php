@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Data Kelahiran</small>
+        Data Kelahiran |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -42,25 +42,27 @@
           endif;
         endif;
       ?>
+
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <a href="<?=site_url('kelahiran/tambah')?>" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Data</a>
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <a style="margin-right: 5px;" href="<?=site_url('kelahiran/tambah')?>" class="btn btn-default"><i class="fa fa-user-plus text-green"></i> Tambah Data</a>
+              <a href="<?=site_url('kelahiran/pencarian')?>" class="btn btn-default"><i class="fa fa-search text-blue"></i> Pencarian Lanjutan</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NIK</th>
+                  <th>Tanggal Lahir</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
                   <th>Nama</th>
-                  <th>Kewarganegaraan</th>
+                  <th>Tempat Lahir</th>
                   <th>Nama Ibu</th>
                   <th>Nama Ayah</th>
-                  <th>Saksi I</th>
-                  <th>Saksi II</th>
-                  <th style="width: 10px;">Act</th>
+                  <th style="width: 10px;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -71,13 +73,13 @@
                 ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
+                  <td><?=$row->tgl_lahir?></td>
+                  <td><?=$row->no_kk?></td>
                   <td><?=$row->nik?></td>
                   <td><?=$row->nama_penduduk?></td>
-                  <td><?=$row->kewarganegaraan?></td>
-                  <td><?=$row->nama_ibu?></td>
+                  <td><?=$row->tempat_lahir?></td>
                   <td><?=$row->nama_ayah?></td>
-                  <td><?=$row->nama_saksi1?></td>
-                  <td><?=$row->nama_saksi2?></td>
+                  <td><?=$row->nama_ibu?></td>
                   <td>
                     <div class="btn-group-vertical">
                       <button type="button" class="btn btn-default" onClick="window.location.href='<?=site_url('kelahiran/detail/'.$row->id_kelahiran)?>'">
@@ -105,14 +107,14 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>NIK</th>
+                  <th>Tanggal Lahir</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
                   <th>Nama</th>
-                  <th>Kewarganegaraan</th>
+                  <th>Tempat Lahir</th>
                   <th>Nama Ibu</th>
                   <th>Nama Ayah</th>
-                  <th>Saksi I</th>
-                  <th>Saksi II</th>
-                  <th>Act</th>
+                  <th>Aksi</th>
                 </tr>
                 </tfoot>
               </table>

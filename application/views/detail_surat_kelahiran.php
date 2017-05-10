@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Detail Data Surat Kelahiran</small>
+        Detail Surat Kelahiran |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -49,7 +49,7 @@
         ?>
           <div class="col-md-3">
             <!-- Profile Image -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-body box-profile">
                 <img style="margin: 0 auto;" class="img-responsive"
 
@@ -83,7 +83,7 @@
           <!-- /.col -->
           <div class="col-md-9">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-quote-right margin-r-5"></i> Deskripsi</h3>
               </div>

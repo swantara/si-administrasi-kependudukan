@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Detail Data Pindah</small>
+        Detail Penduduk Pindah |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -86,101 +86,106 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <strong>NIK</strong>
-                <p><?=$row->nik?></p>
-                <hr/>
-                <strong>NKK</strong>
-                <p><?=$row->no_kk?></p>
-                <hr/>
-                <strong>Periode Data</strong>
-                <p><?=$row->periode_data?></p>
-                <hr/>
-                <strong>Nama Kepala Keluarga</strong>
-                <p><?=$row->nama_penduduk?></p>
-                <hr/>
-                <strong>TTL</strong>
-                <p>
-                  <?php
-                    $date=date_create($row->tgl_lahir);
-                    $newdate=date_format($date,"d-m-Y");
-                    echo $row->tempat_lahir . ", " . $newdate;
-                  ?>
-                </p>
-                <hr/>
-                <strong>Jenis Kelamin</strong>
-                <p>
-                  <?php
-                    if($row->jk == 1) :
-                      echo "Laki-laki";
-                    else:
-                      echo "Perempuan";
-                    endif;
-                  ?>
-                </p>
-                <hr/>
-                <strong>Alamat</strong>
-                <p>
-                  <?php
-                    if(is_null($row->alamat_saat_ini) || $row->alamat_saat_ini=="") :
-                      echo "-";
-                    else:
-                      echo $row->alamat_saat_ini;
-                    endif;
-                  ?>
-                </p>
-                <hr/>
-                <strong>Agama</strong>
-                <p><?=$row->agama?></p>
-                <hr/>
-                <strong>Pekerjaan</strong>
-                <p>
-                  <?php
-                    if(is_null($row->pekerjaan) || $row->pekerjaan=="") :
-                      echo "-";
-                    else:
-                      echo $row->pekerjaan;
-                    endif;
-                  ?>
-                </p>
-                <hr/>
-                <strong>Status Perkawinan</strong>
-                <p><?=$row->status_perkawinan?></p>
-                <hr/>
-                <strong>SHDK</strong>
-                <p><?=$row->status_keluarga?></p>
-                <hr/>
-                <strong>Tanggal Pindah</strong>
-                <p>
-                  <?php
-                    $date=date_create($row->tgl_pindah);
-                    $newdate=date_format($date,"d-m-Y");
-                    echo $newdate;
-                  ?>
-                </p>
-                <hr/>
-                <strong>Alasan Pindah</strong>
-                <p><?=$row->alasan_pindah?></p>
-                <hr/>
-                <strong>Alamat Tujuan</strong>
-                <p><?=$row->alamat_tujuan?></p>
-                <hr/>
-                <strong>Provinsi Tujuan</strong>
-                <p><?=$row->provinsi?></p>
-                <hr/>
-                <strong>Kabupaten Tujuan</strong>
-                <p><?=$row->kabupaten?></p>
-                <hr/>
-                <strong>Kecamatan Tujuan</strong>
-                <p><?=$row->kecamatan?></p>
-                <hr/>
-                <strong>Desa Tujuan</strong>
-                <p><?=$row->desa?></p>
-                <hr/>
-                <strong>Banjar Tujuan</strong>
-                <p><?=$row->banjar?></p>
-                <hr/>
-                <strong>Keterangan</strong>
-                <p><?=$row->keterangan?></p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <strong>No Induk Kependudukan</strong>
+                    <p><?=$row->nik?></p>
+                    <hr/>
+                    <strong>No Kartu Keluarga</strong>
+                    <p><?=$row->no_kk?></p>
+                    <hr/>
+                    <strong>Periode Data</strong>
+                    <p><?=$row->periode_data?></p>
+                    <hr/>
+                    <strong>Nama Kepala Keluarga</strong>
+                    <p><?=$row->nama_penduduk?></p>
+                    <hr/>
+                    <strong>Tempat/Tanggal Lahir</strong>
+                    <p>
+                      <?php
+                        $date=date_create($row->tgl_lahir);
+                        $newdate=date_format($date,"d-m-Y");
+                        echo $row->tempat_lahir . ", " . $newdate;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Jenis Kelamin</strong>
+                    <p>
+                      <?php
+                        if($row->jk == 1) :
+                          echo "Laki-laki";
+                        else:
+                          echo "Perempuan";
+                        endif;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Alamat</strong>
+                    <p>
+                      <?php
+                        if(is_null($row->alamat_saat_ini) || $row->alamat_saat_ini=="") :
+                          echo "-";
+                        else:
+                          echo $row->alamat_saat_ini;
+                        endif;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Agama</strong>
+                    <p><?=$row->agama?></p>
+                    <hr/>
+                    <strong>Pekerjaan</strong>
+                    <p>
+                      <?php
+                        if(is_null($row->pekerjaan) || $row->pekerjaan=="") :
+                          echo "-";
+                        else:
+                          echo $row->pekerjaan;
+                        endif;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Status Perkawinan</strong>
+                    <p><?=$row->status_perkawinan?></p>
+                  </div>
+                  <div class="col-md-6">
+                    <strong>Status Hubungan Dalam Keluarga</strong>
+                    <p><?=$row->status_keluarga?></p>
+                    <hr/>
+                    <strong>Tanggal Pindah</strong>
+                    <p>
+                      <?php
+                        $date=date_create($row->tgl_pindah);
+                        $newdate=date_format($date,"d-m-Y");
+                        echo $newdate;
+                      ?>
+                    </p>
+                    <hr/>
+                    <strong>Alasan Pindah</strong>
+                    <p><?=$row->alasan_pindah?></p>
+                    <hr/>
+                    <strong>Alamat Tujuan</strong>
+                    <p><?=$row->alamat_tujuan?></p>
+                    <hr/>
+                    <strong>Provinsi Tujuan</strong>
+                    <p><?=$row->provinsi?></p>
+                    <hr/>
+                    <strong>Kabupaten Tujuan</strong>
+                    <p><?=$row->kabupaten?></p>
+                    <hr/>
+                    <strong>Kecamatan Tujuan</strong>
+                    <p><?=$row->kecamatan?></p>
+                    <hr/>
+                    <strong>Desa Tujuan</strong>
+                    <p><?=$row->desa?></p>
+                    <hr/>
+                    <strong>Banjar Tujuan</strong>
+                    <p><?=$row->banjar?></p>
+                    <hr/>
+                    <strong>Keterangan</strong>
+                    <p><?=$row->keterangan?></p>
+                  </div>
+                </div>
               </div>
               <!-- /.box-body -->
             </div>

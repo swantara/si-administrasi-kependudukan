@@ -44,7 +44,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -171,6 +171,20 @@ function export() {
   $(document).ready(function() {
     //Initialize Select2 Elements
     $(".select2").select2();
+    $('#example2').DataTable( {
+      "paging": false,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": true,
+      "scrollX": true,
+      dom: 'Bfrtip',
+      buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+      ]
+    });
     $('#example1').DataTable({
       "paging": true,
       "lengthChange": true,
@@ -190,5 +204,7 @@ function export() {
     });
   } );
 </script>
+
+</body>
 </body>
 </html>

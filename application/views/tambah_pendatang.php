@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Tambah Data Pendatang</small>
+        Tambah Data Penduduk Pendatang |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -14,9 +14,23 @@
         <?php echo form_open('pendatang/tambah', array('method' => 'POST', 'role' => 'form', 'enctype' => 'multipart/form-data'));?>
         <?php echo validation_errors();?>
           <!-- /.col -->
-          <div class="col-md-12">
+          <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-danger">
+              <div class="box-body box-profile">
+                <lavel>Preview</lavel>
+                <img style="margin: 0 auto;" class="img-responsive" src="<?=base_url()?>assets/dist/img/no-image.jpg" alt="Program Picture">
+                <hr>
+                <lavel>Browse Foto :</lavel>
+                <input name="foto" type="file" id="fotoArtikel">
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <div class="col-md-9">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Pendatang</h3>
               </div>
@@ -25,18 +39,180 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>NIK</label>
-                      <input id="penduduk" required name="nik" type="text" class="form-control" value="<?=set_value('nik')?>"  placeholder="Masukan Nomor Induk Kependudukan" onblur="getdata(this)">
+                      <label>No Induk Kependudukan</label>
+                      <input required name="nik" type="text" class="form-control" value="<?=set_value('nik')?>" placeholder="No Induk Kependudukan">
                     </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label>Nama</label>
-                      <input required readonly id="nama_penduduk" name="nama_penduduk" type="text" class="form-control" value="<?=set_value('nama_penduduk')?>" placeholder="Nama Penduduk">
-                      <input type="hidden" id="id_penduduk" name="id_penduduk" type="text" class="form-control" value="<?=set_value('id_penduduk')?>">
+                      <label>No Kartu Keluarga</label>
+                      <input required name="nkk" type="text" class="form-control" value="<?=set_value('nkk')?>" placeholder="No Kartu Keluarga">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Periode Data</label>
+                      <input required name="periode_data" type="text" class="form-control" value="<?php echo date("Y");?>">
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Nama</label>
+                      <input required name="nama_penduduk" type="text" class="form-control" value="<?=set_value('nama')?>" placeholder="Nama Penduduk">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Status Hubungan Dalam Keluarga</label>
+                      <select required name="status_kk" class="form-control">
+                        <?php
+                          if(is_object($shdk) || is_array($shdk)) :
+                            foreach ($shdk as $row) :
+                        ?>
+                        <option <?=set_select('status_kk', $row->id_shdk)?> value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tempat Lahir</label>
+                      <input required name="tempat_lahir" type="text" class="form-control" value="<?=set_value('tempat_lahir')?>" placeholder="Tempat Lahir">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tanggal Lahir</label><br>
+                      <div class='input-group date'>
+                        <div class='input-group-addon'>
+                          <i class='fa fa-calendar'></i>
+                        </div>
+                        <input required name="tanggal_lahir" type='text' class='form-control pull-right' id='datepicker' value="<?=set_value('tanggal_lahir')?>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Jenis Kelamin</label><br>
+                  <label class="radio-inline">
+                    <input type="radio" name="jenis_kelamin" class="minimal" <?=set_radio('jenis_kelamin', 1, TRUE)?> value="1"> Laki-laki
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="jenis_kelamin" class="minimal" <?=set_radio('jenis_kelamin', 0)?> value="0"> Perempuan
+                  </label>
+                </div>  
+                <div class="form-group">
+                  <label>Alamat</label>
+                  <input required name="alamat" type="text" class="form-control" value="<?=set_value('alamat')?>" placeholder="Alamat">
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Agama</label>
+                      <select required name="agama" class="form-control">
+                        <?php
+                          if(is_object($agama) || is_array($agama)) :
+                            foreach ($agama as $row) :
+                        ?>
+                        <option <?=set_select('agama', $row->id_agama)?> value="<?=$row->id_agama?>"><?=$row->agama?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pendidikan</label>
+                      <select required name="pendidikan" class="form-control">
+                        <?php
+                          if(is_object($pendidikan) || is_array($pendidikan)) :
+                            foreach ($pendidikan as $row) :
+                        ?>
+                        <option <?=set_select('pendidikan', $row->id_pendidikan)?> value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pekerjaan</label>
+                      <input required name="pekerjaan" type="text" class="form-control" value="<?=set_value('pekerjaan')?>" placeholder="Pekerjaan">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Telepon</label>
+                      <input required name="telepon" type="text" class="form-control" value="<?=set_value('telepon')?>" placeholder="Telepon">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Ayah</label>
+                      <input required name="nama_ayah" type="text" class="form-control" value="<?=set_value('nama_ayah')?>" placeholder="Nama Ayah">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nama Ibu</label>
+                      <input required name="nama_ibu" type="text" class="form-control" value="<?=set_value('nama_ibu')?>" placeholder="Nama Ibu">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Kewarganegaraan</label>
+                  <input required name="kewarganegaraan" type="text" class="form-control" value="<?=set_value('kewarganegaraan')?>" placeholder="Kewarganegaraan">
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Status Kependudukan</label>
+                      <select required name="status_kependudukan" class="form-control">
+                        <?php
+                          if(is_object($kependudukan) || is_array($kependudukan)) :
+                            foreach ($kependudukan as $row) :
+                        ?>
+                        <option <?=set_select('status_kependudukan', $row->id_status_kependudukan)?> value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Status Perkawinan</label>
+                      <select required name="status_kawin" class="form-control">
+                        <?php
+                          if(is_object($kawin) || is_array($kawin)) :
+                            foreach ($kawin as $row) :
+                        ?>
+                        <option <?=set_select('status_kawin', $row->id_status_kawin)?> value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
+                        <?php
+                            endforeach;
+                          endif;
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <hr/>
                 <div class="form-group">
                   <label>Alamat Asal</label>
                   <input required name="alamat_asal" type="text" class="form-control" value="<?=set_value('alamat_asal')?>" placeholder="Masukan Alamat">
@@ -145,23 +321,3 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-<script>
-  
-  function getdata(input)
-  {
-    $.getJSON( "<?=site_url('penduduk/ajaxgetdetailbynik/')?>" + input.value)
-      .done(function( data ) {
-        if(data != null)
-        {
-          $('#nama_' + input.id).val(data.nama);
-          $('#id_' + input.id).val(data.id_penduduk);
-        }
-        else
-        {
-          $('#nama_' + input.id).val('Data tidak ditemukan');
-        }
-      });
-  }
-
-</script>

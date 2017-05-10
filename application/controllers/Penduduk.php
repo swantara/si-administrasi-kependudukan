@@ -23,6 +23,18 @@ class Penduduk extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function pencarian()
+	{
+		// $data['data'] = $this->kelahiran->getkelahiran();
+		$data['shdk'] = $this->penduduk->getshdk();
+		$data['agama'] = $this->penduduk->getagama();
+		$data['pendidikan'] = $this->penduduk->getpendidikan();
+		$data['kawin'] = $this->penduduk->getstatuskawin();
+		$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
+		$data['body'] = $this->load->view('view_penduduk_filter', $data, true);
+		$this->load->view('template', $data);
+	}
+
 	public function tambah()
 	{
 		$this->form_validation->set_rules('periode_data', 'Periode Data', 'trim|required');
@@ -76,11 +88,11 @@ class Penduduk extends CI_Controller {
 		if($this->form_validation->run() === false)
 		{
 			$data['data'] = $this->penduduk->getdetailpenduduk($id)[0];
-			$data['shdk'] = $this->penduduk->getshdkexclude('1');
-			$data['agama'] = $this->penduduk->getagamaexclude('1');
-			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
-			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
-			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
+			$data['shdk'] = $this->penduduk->getshdk();
+			$data['agama'] = $this->penduduk->getagama();
+			$data['pendidikan'] = $this->penduduk->getpendidikan();
+			$data['kawin'] = $this->penduduk->getstatuskawin();
+			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
 			$data['body'] = $this->load->view('edit_penduduk', $data, true);
 			$this->load->view('template', $data);
 		}
@@ -120,10 +132,11 @@ class Penduduk extends CI_Controller {
 				// array( 'db' => '`r`.`hdno`', 'dt' => 0, 'field' => 'hdno' , 
 				// 		'formatter' => function( $d, $row ) {
 				// 	return '<a href="'.site_url("info/detail").'/'.$row['id'].'" > '.$d.'</a>';
-				// 	}),
-				array( 'db' => '`p`.`nik`',   'dt' => 0, 'field' => 'nik' ),
-				array( 'db' => '`p`.`no_kk`',   'dt' => 1, 'field' => 'no_kk' ),
-				array( 'db' => "DATE_FORMAT(p.created_at,'%d-%c-%Y')",     'dt' => 2, 'field' => "DATE_FORMAT(p.created_at,'%d-%c-%Y')"),
+				// 	}),				
+				array( 'db' => "DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y')",     'dt' => 0, 'field' => "DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y')"),
+				array( 'db' => '`p`.`tempat_lahir`',   'dt' => 1, 'field' => 'tempat_lahir' ),
+				array( 'db' => '`p`.`no_kk`',   'dt' => 2, 'field' => 'no_kk' ),
+				array( 'db' => '`p`.`nik`',   'dt' => 3, 'field' => 'nik' ),
 
 				// array( 'db' => '`p`.`created_at`', 'dt' => 2, 'field' => 'created_at' , 
 				// 		'formatter' => function( $d, $row ) {
@@ -131,8 +144,8 @@ class Penduduk extends CI_Controller {
 		  //                   $newdate=date_format($date,"d-m-Y");
     //                 	return $newdate;
 				// 	}),
-				array( 'db' => '`p`.`nama`',   'dt' => 3, 'field' => 'nama' ),
-				array( 'db' => "CONCAT(p.tempat_lahir, ', ', CAST(DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y') as char))",     'dt' => 4, 'field' => "CONCAT(p.tempat_lahir, ', ', CAST(DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y') as char))"),
+				array( 'db' => '`p`.`nama`',   'dt' => 4, 'field' => 'nama' ),
+				// array( 'db' => "CONCAT(p.tempat_lahir, ', ', CAST(DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y') as char))",     'dt' => 4, 'field' => "CONCAT(p.tempat_lahir, ', ', CAST(DATE_FORMAT(p.tgl_lahir,'%d-%c-%Y') as char))"),
 				// array( 'db' => '`p`.`tgl_lahir`', 'dt' => 4, 'field' => 'tgl_lahir' , 
 				// 		'formatter' => function( $d, $row ) {
 				// 			$date=date_create($d);

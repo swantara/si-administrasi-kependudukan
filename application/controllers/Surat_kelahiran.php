@@ -7,6 +7,7 @@ class Surat_kelahiran extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('surat_kelahiran_model', 'surat_kelahiran', true);
+		$this->load->model('penduduk_model', 'penduduk', true);
 
 		// if(!$this->session->userdata('session'))
   //  		{
@@ -18,6 +19,18 @@ class Surat_kelahiran extends CI_Controller {
 	{
 		$data['data'] = $this->surat_kelahiran->getsuratkelahiran();
 		$data['body'] = $this->load->view('view_surat_kelahiran', $data, true);
+		$this->load->view('template', $data);
+	}
+
+	public function pencarian()
+	{
+		$data['data'] = $this->surat_kelahiran->getsuratkelahiran();
+		$data['shdk'] = $this->penduduk->getshdk();
+		$data['agama'] = $this->penduduk->getagama();
+		$data['pendidikan'] = $this->penduduk->getpendidikan();
+		$data['kawin'] = $this->penduduk->getstatuskawin();
+		$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
+		$data['body'] = $this->load->view('view_surat_kelahiran_filter', $data, true);
 		$this->load->view('template', $data);
 	}
 

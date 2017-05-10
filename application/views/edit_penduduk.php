@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Edit Data Penduduk</small>
+        Edit Data Penduduk |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -15,7 +15,7 @@
         <?php echo validation_errors();?>
           <div class="col-md-3">
             <!-- Profile Image -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-body box-profile">
                 <lavel>Preview</lavel>
                 <img style="margin: 0 auto;" class="img-responsive"
@@ -46,7 +46,7 @@
           <!-- /.col -->
           <div class="col-md-9">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Edit Data Penduduk</h3>
               </div>
@@ -55,13 +55,13 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>NIK</label>
+                      <label>No Induk Kependudukan</label>
                       <input required name="nik" type="text" class="form-control" value="<?=$data->nik?>">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>NKK</label>
+                      <label>No Kartu Keluarga</label>
                       <input required name="nkk" type="text" class="form-control" value="<?=$data->no_kk?>">
                     </div>
                   </div>
@@ -81,14 +81,13 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>Status Dalam Keluarga</label>
+                      <label>Status Hubungan Dalam Keluarga</label>
                       <select required name="status_kk" class="form-control">
-                        <option value="<?=$data->status_kk?>" selected><?=$data->status_keluarga?></option>
                         <?php
                           if(is_object($shdk) || is_array($shdk)) :
                             foreach ($shdk as $row) :
                         ?>
-                        <option value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
+                        <option <?php if($data->status_kk==$row->id_shdk) : echo "selected"; endif; ?> value="<?=$row->id_shdk?>"><?=$row->shdk?></option>
                         <?php
                             endforeach;
                           endif;
@@ -139,12 +138,11 @@
                     <div class="form-group">
                       <label>Agama</label>
                       <select required name="agama" class="form-control">
-                        <option value="<?=$data->id_agama?>" selected><?=$data->agama?></option>
                         <?php
                           if(is_object($agama) || is_array($agama)) :
                             foreach ($agama as $row) :
                         ?>
-                        <option value="<?=$row->id_agama?>"><?=$row->agama?></option>
+                        <option <?php if($data->agama==$row->id_agama) : echo "selected"; endif; ?> value="<?=$row->id_agama?>"><?=$row->agama?></option>
                         <?php
                             endforeach;
                           endif;
@@ -156,12 +154,11 @@
                     <div class="form-group">
                       <label>Pendidikan</label>
                       <select required name="pendidikan" class="form-control">
-                        <option value="<?=$data->id_pendidikan?>" selected><?=$data->pendidikan?></option>
                         <?php
                           if(is_object($pendidikan) || is_array($pendidikan)) :
                             foreach ($pendidikan as $row) :
                         ?>
-                        <option value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
+                        <option <?php if($data->pendidikan==$row->id_pendidikan) : echo "selected"; endif; ?> value="<?=$row->id_pendidikan?>"><?=$row->pend_akhir?></option>
                         <?php
                             endforeach;
                           endif;
@@ -207,12 +204,11 @@
                     <div class="form-group">
                       <label>Status Kependudukan</label>
                       <select required name="status_kependudukan" class="form-control">
-                        <option value="<?=$data->status_kependudukan?>" selected><?=$data->status_penduduk?></option>
                         <?php
                           if(is_object($kependudukan) || is_array($kependudukan)) :
                             foreach ($kependudukan as $row) :
                         ?>
-                        <option value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
+                        <option <?php if($data->status_penduduk==$row->id_status_kependudukan) : echo "selected"; endif; ?> value="<?=$row->id_status_kependudukan?>"><?=$row->status_kependudukan?></option>
                         <?php
                             endforeach;
                           endif;
@@ -224,12 +220,11 @@
                     <div class="form-group">
                       <label>Status Perkawinan</label>
                       <select required name="status_kawin" class="form-control">
-                        <option value="<?=$data->status_kawin?>" selected><?=$data->status_perkawinan?></option>
                         <?php
                           if(is_object($kawin) || is_array($kawin)) :
                             foreach ($kawin as $row) :
                         ?>
-                        <option value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
+                        <option <?php if($data->status_perkawinan==$row->id_status_kawin) : echo "selected"; endif; ?> value="<?=$row->id_status_kawin?>"><?=$row->status_kawin?></option>
                         <?php
                             endforeach;
                           endif;

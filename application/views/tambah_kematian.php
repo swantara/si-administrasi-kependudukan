@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Tambah Data Kematian</small>
+        Tambah Data Penduduk Meninggal |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -16,7 +16,7 @@
           <!-- /.col -->
           <div class="col-md-12">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Kematian</h3>
               </div>
@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>NIK</label>
+                      <label>No Induk Kependudukan</label>
                       <input id="penduduk" required name="nik" type="text" class="form-control" value="<?=set_value('nik')?>"  placeholder="Masukan Nomor Induk Kependudukan" onblur="getdata(this)">
                     </div>
                   </div>

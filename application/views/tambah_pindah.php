@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Tambah Data Pindah</small>
+        Tambah Data Penduduk Pindah |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label>NKK</label>
+                      <label>No Kartu Keluarga</label>
                       <input id="penduduk" required name="nkk" type="text" class="form-control" value="<?=set_value('nkk')?>"  placeholder="Masukan Nomor Kartu Keluarga" onblur="getdata(this)">
                     </div>
                   </div>

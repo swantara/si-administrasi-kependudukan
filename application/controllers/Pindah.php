@@ -23,6 +23,18 @@ class Pindah extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function pencarian()
+	{
+		$data['data'] = $this->pindah->getpindah();
+		$data['shdk'] = $this->pindah->getshdk();
+		$data['agama'] = $this->pindah->getagama();
+		$data['pendidikan'] = $this->pindah->getpendidikan();
+		$data['kawin'] = $this->pindah->getstatuskawin();
+		$data['kependudukan'] = $this->pindah->getstatuspenduduk();
+		$data['body'] = $this->load->view('view_pindah_filter', $data, true);
+		$this->load->view('template', $data);
+	}
+
 	public function tambah()
 	{
 		$this->form_validation->set_rules('alasan_pindah', 'Alasan Pindah', 'trim|required');
@@ -68,15 +80,16 @@ class Pindah extends CI_Controller {
 		
 		if($this->form_validation->run() === false)
 		{
-			$data['provinsi'] = $this->pendatang->getprovinsiexclude('1');
-			$data['kabupaten'] = $this->pendatang->getkabupatenexclude('1');
-			$data['kecamatan'] = $this->pendatang->getkecamatanexclude('1');
-			$data['desa'] = $this->pendatang->getdesaexclude('1');
-			$data['banjar'] = $this->pendatang->getbanjarexclude('1');
-			$data['agama'] = $this->penduduk->getagamaexclude('1');
-			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
-			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
-			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
+			$data['provinsi'] = $this->pendatang->getprovinsi();
+			$data['kabupaten'] = $this->pendatang->getkabupaten();
+			$data['kecamatan'] = $this->pendatang->getkecamatan();
+			$data['desa'] = $this->pendatang->getdesa();
+			$data['banjar'] = $this->pendatang->getbanjar();
+			$data['shdk'] = $this->penduduk->getshdk();
+			$data['agama'] = $this->penduduk->getagama();
+			$data['pendidikan'] = $this->penduduk->getpendidikan();
+			$data['kawin'] = $this->penduduk->getstatuskawin();
+			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
 			$data['data'] = $this->pindah->getdetailpindah($id)[0];
 			$data['body'] = $this->load->view('edit_pindah', $data, true);
 			$this->load->view('template', $data);

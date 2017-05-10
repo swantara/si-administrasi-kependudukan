@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Data Penduduk Pendatang</small>
+        Data Penduduk Pendatang |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -44,25 +44,25 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <a href="<?=site_url('pendatang/tambah')?>" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Data</a>
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <a style="margin-right: 5px;" href="<?=site_url('pendatang/tambah')?>" class="btn btn-default"><i class="fa fa-user-plus text-green"></i> Tambah Data</a>
+              <a href="<?=site_url('pendatang/pencarian')?>" class="btn btn-default"><i class="fa fa-search text-blue"></i> Pencarian Lanjutan</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NIK</th>
+                  <th>Tanggal Datang</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
                   <th>Nama</th>
                   <th>Alamat Asal</th>
                   <th>Provinsi</th>
                   <th>Kabupaten</th>
-                  <th>kecamatan</th>
-                  <th>Desa</th>
-                  <th>Banjar</th>
                   <th>Keterangan</th>
-                  <th style="width: 10px;">Act</th>
+                  <th style="width: 10px;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -73,14 +73,13 @@
                 ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
+                  <td><?=$row->tgl_datang?></td>
+                  <td><?=$row->no_kk?></td>
                   <td><?=$row->nik?></td>
                   <td><?=$row->nama_penduduk?></td>
                   <td><?=$row->alamat_asal?></td>
                   <td><?=$row->provinsi?></td>
                   <td><?=$row->kabupaten?></td>
-                  <td><?=$row->kecamatan?></td>
-                  <td><?=$row->desa?></td>
-                  <td><?=$row->banjar?></td>
                   <td><?=$row->keterangan?></td>
                   <td>
                     <div class="btn-group-vertical">
@@ -108,17 +107,16 @@
                 ?>
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th>NIK</th>
+                <tr>                  
+                  <th>Tanggal Datang</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
                   <th>Nama</th>
                   <th>Alamat Asal</th>
                   <th>Provinsi</th>
                   <th>Kabupaten</th>
-                  <th>kecamatan</th>
-                  <th>Desa</th>
-                  <th>Banjar</th>
                   <th>Keterangan</th>
-                  <th>Act</th>
+                  <th>Aksi</th>
                 </tr>
                 </tfoot>
               </table>

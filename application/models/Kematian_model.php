@@ -11,7 +11,7 @@ class Kematian_model extends CI_Model {
 	public function getkematian()
 	{
 		$query = $this->db->query('select k.*, 
-			p.nama as nama_penduduk, p.nik as nik
+			p.nama as nama_penduduk, p.nik as nik, p.no_kk, p.nama_ayah, p.nama_ibu
 			from t_kematian k 
 			inner join t_penduduk p on p.id_penduduk=k.id_penduduk
 			where k.status <> 0');
@@ -29,7 +29,7 @@ class Kematian_model extends CI_Model {
 	public function getdetailkematian($id)
 	{
 		$query = $this->db->query('select k.*, 
-			p.nama as nama_penduduk, p.nik as nik, p.no_kk, p.pekerjaan, p.periode_data as periode_data, p.foto as foto, p.tgl_lahir, p.tempat_lahir, p.jk, p.alamat_saat_ini, p.status_kk, p.id_agama, p.id_pendidikan, p.telepon, p.status_kawin, p.status_kependudukan, p.kewarganegaraan,
+			p.nama as nama_penduduk, p.nik as nik, p.no_kk, p.pekerjaan, p.periode_data as periode_data, p.foto as foto, p.tgl_lahir, p.tempat_lahir, p.jk, p.alamat_saat_ini, p.status_kk, p.id_agama, p.id_pendidikan, p.telepon, p.status_kawin, p.status_kependudukan, p.kewarganegaraan, p.nama_ayah, p.nama_ibu,
 			s.shdk as status_keluarga, 
 			a.agama, 
 			pt.pend_akhir as pendidikan, 

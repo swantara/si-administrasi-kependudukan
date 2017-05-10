@@ -11,7 +11,7 @@ class Pendatang_model extends CI_Model {
 	public function getpendatang()
 	{
 		$query = $this->db->query('select p.*, 
-			tp.nama as nama_penduduk, tp.nik, 
+			tp.nama as nama_penduduk, tp.nik, tp.no_kk,
 			mp.provinsi, 
 			mk.kabupaten, 
 			mkc.kecamatan, 
@@ -292,6 +292,7 @@ class Pendatang_model extends CI_Model {
 
 		$data = array(
 		  'id_penduduk' => $this -> input -> post('id_penduduk'),
+		  'tgl_datang' => $this -> input -> post('tanggal_datang'),
 		  'alamat_asal' => $this -> input -> post('alamat_asal'),
 		  'id_provinsi' => $this -> input -> post('provinsi'),
 		  'id_kabupaten' => $this -> input -> post('kabupaten'),

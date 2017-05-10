@@ -3,8 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SI Administrasi Kependudukan
-        <small>Data Kematian</small>
+        Data Penduduk Pindah |
+        <small>SI Administrasi Kependudukan</small>
       </h1>
     </section>
 
@@ -50,15 +50,16 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NKK</th>
-                  <th>Nama Kepala Keluarga</th>
                   <th>Tanggal Pindah</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
+                  <th>Nama</th>
                   <th>Alasan Pindah</th>
                   <th>Alamat Tujuan</th>
-                  <th style="width: 10px;">Act</th>
+                  <th style="width: 10px;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,8 +70,6 @@
                 ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
-                  <td><?=$row->nik?></td>
-                  <td><?=$row->nama_penduduk?></td>
                   <td>
                     <?php
                       $date=date_create($row->tgl_pindah);
@@ -78,6 +77,9 @@
                       echo $newdate;
                     ?>
                   </td>
+                  <td><?=$row->no_kk?></td>
+                  <td><?=$row->nik?></td>
+                  <td><?=$row->nama_penduduk?></td>
                   <td><?=$row->alasan_pindah?></td>
                   <td><?=$row->alamat_tujuan?></td>
                   <td>
@@ -107,12 +109,13 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>NKK</th>
-                  <th>Nama</th>
                   <th>Tanggal Pindah</th>
+                  <th>No Kartu Keluarga</th>
+                  <th>No Induk Kependudukan</th>
+                  <th>Nama</th>
                   <th>Alasan Pindah</th>
                   <th>Alamat Tujuan</th>
-                  <th>Act</th>
+                  <th>Aksi</th>
                 </tr>
                 </tfoot>
               </table>

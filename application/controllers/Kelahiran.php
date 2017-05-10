@@ -22,6 +22,18 @@ class Kelahiran extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function pencarian()
+	{
+		$data['data'] = $this->kelahiran->getkelahiran();
+		$data['shdk'] = $this->penduduk->getshdk();
+		$data['agama'] = $this->penduduk->getagama();
+		$data['pendidikan'] = $this->penduduk->getpendidikan();
+		$data['kawin'] = $this->penduduk->getstatuskawin();
+		$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
+		$data['body'] = $this->load->view('view_kelahiran_filter', $data, true);
+		$this->load->view('template', $data);
+	}
+
 	public function tambah()
 	{
 		$this->form_validation->set_rules('periode_data', 'Periode Data', 'trim|required');
@@ -81,11 +93,11 @@ class Kelahiran extends CI_Controller {
 		if($this->form_validation->run() === false)
 		{
 			$data['data'] = $this->kelahiran->getdetailkelahiran($id)[0];			
-			$data['shdk'] = $this->penduduk->getshdkexclude('1');
-			$data['agama'] = $this->penduduk->getagamaexclude('1');
-			$data['pendidikan'] = $this->penduduk->getpendidikanexclude('1');
-			$data['kawin'] = $this->penduduk->getstatuskawinexclude('1');
-			$data['kependudukan'] = $this->penduduk->getstatuspendudukexclude('1');
+			$data['shdk'] = $this->penduduk->getshdk();
+			$data['agama'] = $this->penduduk->getagama();
+			$data['pendidikan'] = $this->penduduk->getpendidikan();
+			$data['kawin'] = $this->penduduk->getstatuskawin();
+			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
 			$data['body'] = $this->load->view('edit_kelahiran', $data, true);
 			$this->load->view('template', $data);
 		}
