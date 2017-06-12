@@ -35,6 +35,12 @@ class Penduduk extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function pencarianservice()
+	{
+		$this->penduduk->getfilter();
+		// redirect('penduduk/pencarian','refresh');
+	}
+
 	public function tambah()
 	{
 		$this->form_validation->set_rules('periode_data', 'Periode Data', 'trim|required');
