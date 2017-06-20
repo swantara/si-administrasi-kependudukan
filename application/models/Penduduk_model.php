@@ -354,7 +354,7 @@ class Penduduk_model extends CI_Model {
 		$periode = $this->input->post('periode');
 		$status_kk = $this->input->post('status_kk');
 		$tempat_lahir = $this->input->post('tempat_lahir');
-		$tanggal_lahir = $this->input->post('tanggal_lahir');
+		$tanggal_lahir = $this->input->post('datepicker');
 		$jenis_kelamin = $this->input->post('jenis_kelamin');
 		$alamat = $this->input->post('alamat');
 		$agama = $this->input->post('agama');
@@ -474,7 +474,7 @@ class Penduduk_model extends CI_Model {
 		$query = substr($query, 0, strlen($query) - 5);
 
 		// echo $query . " ";
-
+		$querystr = $query;
 		$query = $this->db->query($query);
 
 		$data = array();
@@ -521,6 +521,7 @@ class Penduduk_model extends CI_Model {
 		}
 		else
 		{
+			//echo $querystr;
 			echo "meong";
 		}
 	}

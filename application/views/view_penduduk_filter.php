@@ -125,13 +125,13 @@
                   <div class="form-group">
                     <small>Jenis Kelamin</small><br>
                     <small class="radio-inline">
-                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin" class="minimal" <?=set_radio('jenis_kelamin', 2, TRUE)?> value="2"> Semua
+                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" class="minimal" checked> Semua
                     </small>
                     <small class="radio-inline">
-                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin" class="minimal" <?=set_radio('jenis_kelamin', 1)?> value="1"> Laki-laki
+                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" class="minimal" > Laki-laki
                     </small>
                     <small class="radio-inline">
-                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin" class="minimal" <?=set_radio('jenis_kelamin', 0)?> value="0"> Perempuan
+                      <input type="radio" name="jenis_kelamin" id="jenis_kelamin0" class="minimal" > Perempuan
                     </small>
                   </div>
                 </div>
@@ -321,43 +321,14 @@
         ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
-        $.post( "http://localhost/si-administrasi-kependudukan/index.php/penduduk/pencarianservice/", 
-        { 
-          nama: "",
-        })
-        .done(function( datax ) {
-            // console.log(datax);
-            table = $('#example77').DataTable({
-                data: dataSet
-                // columns: [
-                //     { title: "Tanggal Lahir" },
-                //     { title: "Tempat Lahir" },
-                //     { title: "No. Kartu Keluarga" },
-                //     { title: "No Induk Kependudukan" },
-                //     { title: "Nama Lengkap" },
-                //     { title: "Jenis Kelamin" },
-                //     { title: "no_kk" },
-                //     { title: "nik" },
-                //     { title: "nama_penduduk" },
-                //     { title: "no_kk" },
-                //     { title: "nik" },
-                //     { title: "nama_penduduk" },
-                //     { title: "no_kk" },
-                //     { title: "nik" },
-                //     { title: "nama_penduduk" },
-                //     { title: "no_kk" },
-                //     { title: "nik" },
-                //     { title: "nama_penduduk" },
-                //     { title: "no_kk" },
-                //     { title: "nik" },
-                //     { title: "nama_penduduk" }
-                // ]
-            });
+        table = $('#example77').DataTable({
+            data: dataSet
         });
     });
 
     function filter()
     {
+      var jk = 2;
       tag.html(''); 
       if($('#no_kk').val() != ""){
         tag.html(tag.html() + " No Kartu Keluarga : <u>" + $('#no_kk').val() + "</u>, ");
@@ -372,39 +343,19 @@
         tag.html(tag.html() + " Periode Data : <u>" + $('#periode').val() + "</u>, ");
       }
       if($('#status_kk').val() != ""){
-        if($('#status_kk').val() == "1"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Kepala Keluarga</u>, ");
-        }
-        else if($('#status_kk').val() == "2"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Istri</u>, ");
-        }
-        else if($('#status_kk').val() == "3"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Anak</u>, ");
-        }
-        else if($('#status_kk').val() == "4"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Cucu</u>, ");
-        }
-        else if($('#status_kk').val() == "5"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Orang Tua</u>, ");
-        }
-        else if($('#status_kk').val() == "6"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Mertua</u>, ");
-        }
-        else if($('#status_kk').val() == "7"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Menantu</u>, ");
-        }
-        else if($('#status_kk').val() == "8"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Pembantu</u>, ");
-        }
-        else if($('#status_kk').val() == "9"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Famili Lain</u>, ");
-        }
-        else if($('#status_kk').val() == "10"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Lainnya</u>, ");
-        }
-        else if($('#status_kk').val() == "11"){
-          tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>Suami</u>, ");
-        }
+        <?php
+          if(is_object($shdk) || is_array($shdk)) :
+            $filter = '';
+            foreach ($shdk as $row) :
+              $filter = $filter.'if($("#status_kk").val() == "'.$row->id_shdk.'"){
+                  tag.html(tag.html() + " Status Hubungan Dalam Keluarga : <u>'.$row->shdk.'</u>, ");
+                }
+                else ';
+            endforeach;
+            $filter = substr($filter, 0, strlen($filter) - 5);
+            echo $filter;
+          endif;
+        ?>
       }
       if($('#tempat_lahir').val() != ""){
         tag.html(tag.html() + " Tempat Lahir : <u>" + $('#tempat_lahir').val() + "</u>, ");
@@ -412,65 +363,51 @@
       if($('#datepicker').val() != ""){
         tag.html(tag.html() + " Tanggal Lahir : <u>" + $('#datepicker').val() + "</u>, ");
       }
-      if($('#jenis_kelamin').val() != ""){
-        if($('#jenis_kelamin').val() == "1"){
-          tag.html(tag.html() + " Jenis Kelamin : <u>Laki-laki</u>, ");
-        }
-        else if($('#jenis_kelamin').val() == "0"){
-          tag.html(tag.html() + " Jenis Kelamin : <u>Perempuan</u>, ");
-        }
+      
+      if($('#jenis_kelamin1').is(':checked')){
+        jk = 1;
+        tag.html(tag.html() + " Jenis Kelamin : <u>Laki-laki</u>, ");
       }
+      else if($('#jenis_kelamin0').is(':checked')){
+        jk = 0;
+        tag.html(tag.html() + " Jenis Kelamin : <u>Perempuan</u>, ");
+      }
+      else if($('#jenis_kelamin2').is(':checked')){
+        jk = 2;
+      }
+
       if($('#alamat').val() != ""){
         tag.html(tag.html() + " Alamat : <u>" + $('#alamat').val() + "</u>, ");
       }
       if($('#agama').val() != ""){
-        if($('#agama').val() == "1"){
-          tag.html(tag.html() + " Agama : <u>Islam</u>, ");
-        }
-        else if($('#agama').val() == "2"){
-          tag.html(tag.html() + " Agama : <u>Hindu</u>, ");
-        }
-        else if($('#agama').val() == "3"){
-          tag.html(tag.html() + " Agama : <u>Kristen</u>, ");
-        }
-        else if($('#agama').val() == "4"){
-          tag.html(tag.html() + " Agama : <u>Katholik</u>, ");
-        }
-        else if($('#agama').val() == "5"){
-          tag.html(tag.html() + " Agama : <u>Buddha</u>, ");
-        }
+        <?php
+          if(is_object($agama) || is_array($agama)) :
+            $filter = '';
+            foreach ($agama as $row) :
+              $filter = $filter.'if($("#agama").val() == "'.$row->id_agama.'"){
+                tag.html(tag.html() + " Agama : <u>'.$row->agama.'</u>, ");
+              }
+              else ';
+            endforeach;
+            $filter = substr($filter, 0, strlen($filter) - 5);
+            echo $filter;
+          endif;
+        ?>
       }
       if($('#pendidikan').val() != ""){
-        if($('#pendidikan').val() == "1"){
-          tag.html(tag.html() + " Pendidikan : <u>Tidak / Belum Sekolah</u>, ");
-        }
-        else if($('#pendidikan').val() == "2"){
-          tag.html(tag.html() + " Pendidikan : <u>Belum Tamat SD / Sederajat</u>, ");
-        }
-        else if($('#pendidikan').val() == "3"){
-          tag.html(tag.html() + " Pendidikan : <u>Tamat SD / Sederajat</u>, ");
-        }
-        else if($('#pendidikan').val() == "4"){
-          tag.html(tag.html() + " Pendidikan : <u>SLTP / Sederajat</u>, ");
-        }
-        else if($('#pendidikan').val() == "5"){
-          tag.html(tag.html() + " Pendidikan : <u>SLTA / Sederajat</u>, ");
-        }
-        else if($('#pendidikan').val() == "6"){
-          tag.html(tag.html() + " Pendidikan : <u>Akademi / Diploma III / Sederajat</u>, ");
-        }
-        else if($('#pendidikan').val() == "7"){
-          tag.html(tag.html() + " Pendidikan : <u>Diploma IV / Strata I</u>, ");
-        }
-        else if($('#pendidikan').val() == "8"){
-          tag.html(tag.html() + " Pendidikan : <u>Diploma I / II</u>, ");
-        }
-        else if($('#pendidikan').val() == "9"){
-          tag.html(tag.html() + " Pendidikan : <u>Strata II</u>, ");
-        }
-        else if($('#pendidikan').val() == "10"){
-          tag.html(tag.html() + " Pendidikan : <u>Strata III</u>, ");
-        }
+        <?php
+          if(is_object($pendidikan) || is_array($pendidikan)) :
+            $filter = '';
+            foreach ($pendidikan as $row) :
+              $filter = $filter.'if($("#pendidikan").val() == "'.$row->id_pendidikan.'"){
+                tag.html(tag.html() + " Pendidikan : <u>'.$row->pend_akhir.'</u>, ");
+              }
+              else ';
+            endforeach;
+            $filter = substr($filter, 0, strlen($filter) - 5);
+            echo $filter;
+          endif;
+        ?>
       }
       if($('#pekerjaan').val() != ""){
         tag.html(tag.html() + " Pekerjaan : <u>" + $('#pekerjaan').val() + "</u>, ");
@@ -485,80 +422,91 @@
         tag.html(tag.html() + " Nama Ibu : <u>" + $('#nama_ibu').val() + "</u>, ");
       }
       if($('#status_kependudukan').val() != ""){
-        if($('#status_kependudukan').val() == "1"){
-          tag.html(tag.html() + " Status Kependudukan : <u>Penduduk Asli</u>, ");
-        }
-        else if($('#status_kependudukan').val() == "2"){
-          tag.html(tag.html() + " Status Kependudukan : <u>Pendatang</u>, ");
-        }
-        else if($('#status_kependudukan').val() == "3"){
-          tag.html(tag.html() + " Status Kependudukan : <u>Pindah</u>, ");
-        }
-        else if($('#status_kependudukan').val() == "4"){
-          tag.html(tag.html() + " Status Kependudukan : <u>Meninggal</u>, ");
-        }
+        <?php
+          if(is_object($kependudukan) || is_array($kependudukan)) :
+            $filter = '';
+            foreach ($kependudukan as $row) :
+              $filter = $filter.'if($("#status_kependudukan").val() == "'.$row->id_status_kependudukan.'"){
+                tag.html(tag.html() + " Status Kependudukan : <u>'.$row->status_kependudukan.'</u>, ");
+              }
+              else ';
+            endforeach;
+            $filter = substr($filter, 0, strlen($filter) - 5);
+            echo $filter;
+          endif;
+        ?>
       }
       if($('#status_kawin').val() != ""){
-        if($('#status_kawin').val() == "1"){
-          tag.html(tag.html() + " Status Perkawinan : <u>Jomblo</u>, ");
-        }
-        else if($('#status_kawin').val() == "2"){
-          tag.html(tag.html() + " Status Perkawinan : <u>Cuma Dianggep Kakak</u>, ");
-        }
-        else if($('#status_kawin').val() == "3"){
-          tag.html(tag.html() + " Status Perkawinan : <u>Ngenes</u>, ");
-        }
-        else if($('#status_kawin').val() == "4"){
-          tag.html(tag.html() + " Status Perkawinan : <u>Tersangkut Masa Lalu</u>, ");
-        }
+        <?php
+          if(is_object($kawin) || is_array($kawin)) :
+            $filter = '';
+            foreach ($kawin as $row) :
+              $filter = $filter.'if($("#status_kawin").val() == "'.$row->id_status_kawin.'"){
+                tag.html(tag.html() + " Status Perkawinan : <u>'.$row->status_kawin.'</u>, ");
+              }
+              else ';
+            endforeach;
+            $filter = substr($filter, 0, strlen($filter) - 5);
+            echo $filter;
+          endif;
+        ?>
       }
       if($('#kewarganegaraan').val() != ""){
         tag.html(tag.html() + " Kewarganegaraan : <u>" + $('#kewarganegaraan').val() + "</u>, ");
       }
-      if($('#no_kk').val() == "" && $('#nik').val() == "" && $('#nama_penduduk').val() == "" && $('#periode').val() == "" && $('#status_kk').val() == "" && $('#tempat_lahir').val() == "" && $('#datepicker').val() == "Invalid+Date" && $('#jenis_kelamin').val() == "2" && $('#alamat').val() == "" && $('#agama').val() == "" && $('#pendidikan').val() == "" && $('#pekerjaan').val() == "" && $('#telepon').val() == "" && $('#nama_ayah').val() == "" && $('#nama_ibu').val() == "" && $('#status_kependudukan').val() == "" && $('#status_kawin').val() == "" && $('#kewarganegaraan').val() == "")
-        console.log("meong");
-        $.post( "http://localhost/si-administrasi-kependudukan/index.php/penduduk/pencarianservice/", 
-        { 
-          no_kk: $('#no_kk').val(),
-          nik: $('#nik').val(),
-          nama_penduduk: $('#nama_penduduk').val(),
-          periode: $('#periode').val(),
-          status_kk: $('#status_kk').val(),
-          tempat_lahir: $('#tempat_lahir').val(),
-          datepicker: $('#datepicker').val(),
-          jenis_kelamin: $('#jenis_kelamin').val(),
-          alamat: $('#alamat').val(),
-          agama: $('#agama').val(),
-          pendidikan: $('#pendidikan').val(),
-          pekerjaan: $('#pekerjaan').val(),
-          telepon: $('#telepon').val(),
-          nama_ayah: $('#nama_ayah').val(),
-          nama_ibu: $('#nama_ibu').val(),
-          status_kependudukan: $('#status_kependudukan').val(),
-          status_kawin: $('#status_kawin').val(),
-          kewarganegaraan: $('#kewarganegaraan').val()
-        })
-        .done(function( datax ) {
-            // console.log(datax);
-            //var datatable = $('#dataTables-example').dataTable().api();
-            table.rows().clear();
-            
+      tag.html(tag.html().substr(0, tag.html().length - 2));
+      if($('#no_kk').val() == "" && $('#nik').val() == "" && $('#nama_penduduk').val() == "" && $('#periode').val() == "" && $('#status_kk').val() == "" && $('#tempat_lahir').val() == "" && $('#datepicker').val() == "" && jk == "2" && $('#alamat').val() == "" && $('#agama').val() == "" && $('#pendidikan').val() == "" && $('#pekerjaan').val() == "" && $('#telepon').val() == "" && $('#nama_ayah').val() == "" && $('#nama_ibu').val() == "" && $('#status_kependudukan').val() == "" && $('#status_kawin').val() == "" && $('#kewarganegaraan').val() == ""){
+        tag.html(tag.html() + " Menampilkan seluruh data penduduk.");
+      }
+      // console.log($('#datepicker').val());
+      $.post( "http://localhost/si-administrasi-kependudukan/index.php/penduduk/pencarianservice/", 
+      { 
+        no_kk: $('#no_kk').val(),
+        nik: $('#nik').val(),
+        nama_penduduk: $('#nama_penduduk').val(),
+        periode: $('#periode').val(),
+        status_kk: $('#status_kk').val(),
+        tempat_lahir: $('#tempat_lahir').val(),
+        datepicker: $('#datepicker').val(),
+        jenis_kelamin: jk,
+        alamat: $('#alamat').val(),
+        agama: $('#agama').val(),
+        pendidikan: $('#pendidikan').val(),
+        pekerjaan: $('#pekerjaan').val(),
+        telepon: $('#telepon').val(),
+        nama_ayah: $('#nama_ayah').val(),
+        nama_ibu: $('#nama_ibu').val(),
+        status_kependudukan: $('#status_kependudukan').val(),
+        status_kawin: $('#status_kawin').val(),
+        kewarganegaraan: $('#kewarganegaraan').val()
+      })
+      .done(function( datax ) {
+          // console.log(datax);
+          //var datatable = $('#dataTables-example').dataTable().api();
+          table.rows().clear();
+          
 
+          if(datax == "meong")
+          {
+            table.row.add(["-", "-", "-", "-", "-", "-", "-", "-", "-"]).draw();
+            alert("Data tidak ditemukan");
+          }
+          else
+          {
             $.each(JSON.parse(datax), function(index, value){
                 table.row.add([value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9], value[10], value[11], value[12], value[13], value[14], value[15], value[16], value[17]]).draw();
             });
+          }
 
-
-
-            //table.row.add();
-            // table = $('#dataTables-example').DataTable({
-            //     data: JSON.parse(datax),
-            //     columns: [
-            //         { title: "Nama" },
-            //         { title: "Kasus" },
-            //         { title: "Status" }
-            //     ]
-            // });
-        });
+          //table.row.add();
+          // table = $('#dataTables-example').DataTable({
+          //     data: JSON.parse(datax),
+          //     columns: [
+          //         { title: "Nama" },
+          //         { title: "Kasus" },
+          //         { title: "Status" }
+          //     ]
+          // });
+      });
     }
-    </script>
+  </script>

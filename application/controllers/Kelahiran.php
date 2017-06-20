@@ -24,7 +24,7 @@ class Kelahiran extends CI_Controller {
 
 	public function pencarian()
 	{
-		$data['data'] = $this->kelahiran->getkelahiran();
+		// $data['data'] = $this->kelahiran->getkelahiran();
 		$data['shdk'] = $this->penduduk->getshdk();
 		$data['agama'] = $this->penduduk->getagama();
 		$data['pendidikan'] = $this->penduduk->getpendidikan();
@@ -32,6 +32,12 @@ class Kelahiran extends CI_Controller {
 		$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
 		$data['body'] = $this->load->view('view_kelahiran_filter', $data, true);
 		$this->load->view('template', $data);
+	}
+
+	public function pencarianservice()
+	{
+		$this->kelahiran->getfilter();
+		// redirect('penduduk/pencarian','refresh');
 	}
 
 	public function tambah()
