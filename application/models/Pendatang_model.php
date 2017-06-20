@@ -500,7 +500,7 @@ class Pendatang_model extends CI_Model {
 
 		if($tanggal_datang != "")
 		{
-			$query = $query." pd.tgl_datang = '".date('Y-m-d', strtotime($tanggal_lahir))."' and ";
+			$query = $query." pd.tgl_datang = '".date('Y-m-d', strtotime($tanggal_datang))."' and ";
 		}
 
 		if($alamat_asal != "")
