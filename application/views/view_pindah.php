@@ -46,7 +46,8 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <a href="<?=site_url('pindah/tambah')?>" class="btn btn-success"><i class="fa fa-user-plus"></i> Tambah Data</a>
+              <a style="margin-right: 5px;" href="<?=site_url('pindah/tambah')?>" class="btn btn-default"><i class="fa fa-user-plus text-green"></i> Tambah Data</a>
+              <a href="<?=site_url('pindah/pencarian')?>" class="btn btn-default"><i class="fa fa-search text-blue"></i> Pencarian Lanjutan</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive">

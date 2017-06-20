@@ -25,14 +25,24 @@ class Pindah extends CI_Controller {
 
 	public function pencarian()
 	{
-		$data['data'] = $this->pindah->getpindah();
-		$data['shdk'] = $this->pindah->getshdk();
-		$data['agama'] = $this->pindah->getagama();
-		$data['pendidikan'] = $this->pindah->getpendidikan();
-		$data['kawin'] = $this->pindah->getstatuskawin();
-		$data['kependudukan'] = $this->pindah->getstatuspenduduk();
+		$data['shdk'] = $this->penduduk->getshdk();
+		$data['agama'] = $this->penduduk->getagama();
+		$data['pendidikan'] = $this->penduduk->getpendidikan();
+		$data['kawin'] = $this->penduduk->getstatuskawin();
+		$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
+		$data['provinsi'] = $this->pendatang->getprovinsi();
+		$data['kabupaten'] = $this->pendatang->getkabupaten();
+		$data['kecamatan'] = $this->pendatang->getkecamatan();
+		$data['desa'] = $this->pendatang->getdesa();
+		$data['banjar'] = $this->pendatang->getbanjar();
 		$data['body'] = $this->load->view('view_pindah_filter', $data, true);
 		$this->load->view('template', $data);
+	}
+
+	public function pencarianservice()
+	{
+		$this->pindah->getfilter();
+		// redirect('penduduk/pencarian','refresh');
 	}
 
 	public function tambah()
