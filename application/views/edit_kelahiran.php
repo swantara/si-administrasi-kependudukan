@@ -287,7 +287,12 @@
   <!-- /.content-wrapper -->
 
 <script>
-  
+
+  $(document).ready(function() {
+    $('#data_penduduk').addClass("active");
+    $('#kelahiran').addClass("active");
+  });
+
   function getdata(input)
   {
     $.getJSON( "<?=site_url('penduduk/ajaxgetdetailbynik/')?>" + input.value)

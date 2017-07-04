@@ -82,37 +82,37 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header"> MENU</li>
-        <li><a href="<?=site_url('dashboard')?>"><i class="fa fa-home"></i> <span> Home</span></a></li>
-        <li class="treeview">
+        <li id="home"><a href="<?=site_url('dashboard')?>"><i class="fa fa-home"></i> <span> Home</span></a></li>
+        <li id="data_penduduk" class="treeview">
           <a href="#">
             <i class="fa icon-wallet"></i> <span> Data Penduduk</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=site_url('penduduk')?>"><i class="fa icon-arrow-right"></i> Data Penduduk</a></li>
-            <li><a href="<?=site_url('kelahiran')?>"><i class="fa icon-arrow-right"></i> Data Kelahiran</a></li>
-            <li><a href="<?=site_url('pendatang')?>"><i class="fa icon-arrow-right"></i> Data Pendatang</a></li>
-            <li><a href="<?=site_url('kematian')?>"><i class="fa icon-arrow-right"></i> Data Penduduk Meninggal</a></li>
-            <li><a href="<?=site_url('pindah')?>"><i class="fa icon-arrow-right"></i> Data Penduduk Pindah</a></li>
+            <li id="penduduk"><a href="<?=site_url('penduduk')?>"><i class="fa icon-arrow-right"></i> Data Penduduk</a></li>
+            <li id="kelahiran"><a href="<?=site_url('kelahiran')?>"><i class="fa icon-arrow-right"></i> Data Kelahiran</a></li>
+            <li id="pendatang"><a href="<?=site_url('pendatang')?>"><i class="fa icon-arrow-right"></i> Data Pendatang</a></li>
+            <li id="kematian"><a href="<?=site_url('kematian')?>"><i class="fa icon-arrow-right"></i> Data Penduduk Meninggal</a></li>
+            <li id="pindah"><a href="<?=site_url('pindah')?>"><i class="fa icon-arrow-right"></i> Data Penduduk Pindah</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li id="surat" class="treeview">
           <a href="#">
             <i class="fa icon-wallet"></i> <span> Surat</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=site_url('surat_kelahiran')?>"><i class="fa icon-arrow-right"></i> SK Kelahiran</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Pendatang</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Kematian</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Pindah</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Kelakuan Baik</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Usaha</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Tidak Mampu</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Belum Pernah Kawin</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Perkawinan Umat Hindu</a></li>
-            <li><a href="#"><i class="fa icon-arrow-right"></i> SK Permohonan KTP</a></li>
+            <li id="surat_kelahiran"><a href="<?=site_url('surat_kelahiran')?>"><i class="fa icon-arrow-right"></i> SK Kelahiran</a></li>
+            <li id="surat_pendatang"><a href="#"><i class="fa icon-arrow-right"></i> SK Pendatang</a></li>
+            <li id="surat_kematian"><a href="#"><i class="fa icon-arrow-right"></i> SK Kematian</a></li>
+            <li id="surat_pindah"><a href="#"><i class="fa icon-arrow-right"></i> SK Pindah</a></li>
+            <li id="surat_kelakuan_baik"><a href="#"><i class="fa icon-arrow-right"></i> SK Kelakuan Baik</a></li>
+            <li id="surat_usaha"><a href="#"><i class="fa icon-arrow-right"></i> SK Usaha</a></li>
+            <li id="surat_tidak_mampu"><a href="#"><i class="fa icon-arrow-right"></i> SK Tidak Mampu</a></li>
+            <li id="surat_belum_kawin"><a href="#"><i class="fa icon-arrow-right"></i> SK Belum Pernah Kawin</a></li>
+            <li id="surat_perkawinan_hindu"><a href="#"><i class="fa icon-arrow-right"></i> SK Perkawinan Umat Hindu</a></li>
+            <li id="surat_permohonan_ktp"><a href="#"><i class="fa icon-arrow-right"></i> SK Permohonan KTP</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa icon-basket"></i> <span> Potensi Daerah</span></a></li>
+        <li id="potensi"><a href="#"><i class="fa icon-basket"></i> <span> Potensi Daerah</span></a></li>
         <li class="header"> LOGOUT</li>
         <li><a onclick="return confirm('Pilih OK untuk melanjutkan.')" href="<?=site_url('login/logout')?>"><i class="fa fa-power-off text-red"></i> <span> Logout</span></a></li>
       </ul>

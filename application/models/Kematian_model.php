@@ -318,7 +318,9 @@ class Kematian_model extends CI_Model {
 			$data[0] = array();
 			$no = 0;
 			foreach ($query->result() as $result) {
-				$data[$no][0] = $result->tgl_meninggal; 
+				$date=date_create( $result->tgl_meninggal);
+              	$newdate=date_format($date,"d-m-Y");
+				$data[$no][0] = $newdate; 
 				$data[$no][1] = $result->no_kk; 
 				$data[$no][2] = $result->nik;
 				$data[$no][3] = $result->nama; 

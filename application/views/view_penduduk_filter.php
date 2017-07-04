@@ -321,6 +321,8 @@
         ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
+        $('#data_penduduk').addClass("active");
+        $('#penduduk').addClass("active");
         table = $('#example77').DataTable({
             data: dataSet
         });

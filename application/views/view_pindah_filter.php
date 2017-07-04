@@ -378,7 +378,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
+          <div class="box box-danger">
             <div class="box-body table-responsive">
               <table id="example77" class="table table-bordered table-striped">
                 <thead>
@@ -424,6 +424,8 @@
         ["-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
+        $('#data_penduduk').addClass("active");
+        $('#pindah').addClass("active");
         table = $('#example77').DataTable({
             data: dataSet
         });

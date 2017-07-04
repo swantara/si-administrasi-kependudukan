@@ -484,7 +484,9 @@ class Penduduk_model extends CI_Model {
 			$data[0] = array();
 			$no = 0;
 			foreach ($query->result() as $result) {
-				$data[$no][0] = $result->tgl_lahir; 
+				$date=date_create( $result->tgl_lahir);
+              	$newdate=date_format($date,"d-m-Y");
+				$data[$no][0] = $newdate; 
 				$data[$no][1] = $result->tempat_lahir; 
 				$data[$no][2] = $result->no_kk;
 				$data[$no][3] = $result->nik; 

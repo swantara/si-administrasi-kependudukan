@@ -94,6 +94,8 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      $('#data_penduduk').addClass("active");
+      $('#penduduk').addClass("active");
       $('#example77').DataTable( {
         "processing": true,
         "serverSide": true,

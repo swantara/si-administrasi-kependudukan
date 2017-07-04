@@ -351,6 +351,8 @@
         ["-", "-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
+        $('#surat').addClass("active");
+        $('#surat_kelahiran').addClass("active");
         table = $('#example77').DataTable({
             data: dataSet
         });

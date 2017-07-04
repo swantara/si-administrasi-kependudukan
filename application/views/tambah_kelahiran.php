@@ -265,6 +265,15 @@
   <!-- /.content-wrapper -->
 
 <script>
+
+  $(document).ready(function() {
+    $('#data_penduduk').addClass("active");
+    $('#kelahiran').addClass("active");
+  });
+
+</script>
+
+<script>
   
   function getdata(input)
   {

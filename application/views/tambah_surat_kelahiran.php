@@ -98,6 +98,15 @@
   <!-- /.content-wrapper -->
 
 <script>
+
+  $(document).ready(function() {
+    $('#surat').addClass("active");
+    $('#surat_kelahiran').addClass("active");
+  });
+
+</script>
+
+<script>
   
   function getdata(input)
   {

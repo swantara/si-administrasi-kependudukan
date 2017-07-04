@@ -228,3 +228,12 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <script>
+
+  $(document).ready(function() {
+    $('#data_penduduk').addClass("active");
+    $('#penduduk').addClass("active");
+  });
+
+</script>

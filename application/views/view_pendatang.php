@@ -73,7 +73,13 @@
                 ?>
                 <tr>
                   <input name='id' id='id' value='".$id."' type='hidden'>
-                  <td><?=$row->tgl_datang?></td>
+                  <td>
+                    <?php
+                      $date=date_create($row->tgl_datang);
+                      $newdate=date_format($date,"d-m-Y");
+                      echo $newdate;
+                    ?>
+                  </td>
                   <td><?=$row->no_kk?></td>
                   <td><?=$row->nik?></td>
                   <td><?=$row->nama_penduduk?></td>
@@ -132,3 +138,12 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <script>
+
+    $(document).ready(function() {
+      $('#data_penduduk').addClass("active");
+      $('#pendatang').addClass("active");
+    });
+
+  </script>

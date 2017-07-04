@@ -321,3 +321,12 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <script>
+
+  $(document).ready(function() {
+    $('#data_penduduk').addClass("active");
+    $('#pendatang').addClass("active");
+  });
+
+</script>

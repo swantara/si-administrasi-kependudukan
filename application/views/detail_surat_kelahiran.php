@@ -230,3 +230,13 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- navbar set active -->
+  <script>
+
+    $(document).ready(function() {
+      $('#surat').addClass("active");
+      $('#surat_kelahiran').addClass("active");
+    });
+
+  </script>

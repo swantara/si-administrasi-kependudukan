@@ -16,7 +16,7 @@
           <!-- /.col -->
           <div class="col-md-12">
             <!-- About Me Box -->
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-edit margin-r-5"></i>Data Pindah</h3>
               </div>
@@ -166,6 +166,15 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<script>
+
+  $(document).ready(function() {
+    $('#data_penduduk').addClass("active");
+    $('#pindah').addClass("active");
+  });
+
+</script>
 
 <script>
   

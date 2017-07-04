@@ -344,6 +344,8 @@
         ["-", "-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
+        $('#data_penduduk').addClass("active");
+        $('#kematian').addClass("active");
         table = $('#example77').DataTable({
             data: dataSet
         });

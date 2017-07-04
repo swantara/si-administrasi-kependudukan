@@ -319,6 +319,8 @@
         ["-", "-", "-", "-", "-", "-", "-", "-"]
     ];
     $(document).ready(function() {
+        $('#data_penduduk').addClass("active");
+        $('#kelahiran').addClass("active");
         table = $('#example77').DataTable({
             data: dataSet
         });

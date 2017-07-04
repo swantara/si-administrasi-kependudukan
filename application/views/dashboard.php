@@ -19,3 +19,12 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- navbar set active -->
+  <script>
+
+    $(document).ready(function() {
+        $('#home').addClass("active");
+    });
+
+  </script>

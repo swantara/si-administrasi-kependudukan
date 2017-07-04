@@ -44,7 +44,7 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
+          <div class="box box-danger">
             <div class="box-header">
               <a style="margin-right: 5px;" href="<?=site_url('pindah/tambah')?>" class="btn btn-default"><i class="fa fa-user-plus text-green"></i> Tambah Data</a>
               <a href="<?=site_url('pindah/pencarian')?>" class="btn btn-default"><i class="fa fa-search text-blue"></i> Pencarian Lanjutan</a>
@@ -132,3 +132,12 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <script>
+
+    $(document).ready(function() {
+      $('#data_penduduk').addClass("active");
+      $('#pindah').addClass("active");
+    });
+
+  </script>

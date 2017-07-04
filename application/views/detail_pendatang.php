@@ -199,3 +199,13 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- navbar set active -->
+  <script>
+
+    $(document).ready(function() {
+      $('#data_penduduk').addClass("active");
+      $('#pendatang').addClass("active");
+    });
+
+  </script>
