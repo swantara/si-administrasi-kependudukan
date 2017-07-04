@@ -108,4 +108,32 @@ class Pendatang extends CI_Controller {
 		$this->pendatang->hapus($id);
 		redirect('pendatang','refresh');
 	}
+
+	public function ajaxgetkabupatenbyprovinsi($provinsi = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pendatang->getkabupatenbyprovinsi($provinsi));
+		}
+	}
+
+	public function ajaxgetkecamatanbykabupaten($kabupaten = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pendatang->getkecamatanbykabupaten($kabupaten));
+		}
+	}
+
+	public function ajaxgetdesabykecamatan($kecamatan = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pendatang->getdesabykecamatan($kecamatan));
+		}
+	}
+
+	public function ajaxgetbanjarbydesa($desa = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pendatang->getbanjarbydesa($desa));
+		}
+	}
 }

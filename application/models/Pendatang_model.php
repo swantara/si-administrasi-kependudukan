@@ -88,37 +88,9 @@ class Pendatang_model extends CI_Model {
 		}
 	}
 
-	public function getprovinsiexclude($id_provinsi)
-	{
-		$query = $this->db->query('select * from m_provinsi where id_provinsi NOT IN ('.$id_provinsi.')');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	public function getkabupaten()
 	{
 		$query = $this->db->query('select * from m_kabupaten');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	public function getkabupatenexclude($id_kabupaten)
-	{
-		$query = $this->db->query('select * from m_kabupaten where id_kabupaten NOT IN ('.$id_kabupaten.')');
 
 		if($query->num_rows() > 0)
 		{
@@ -144,20 +116,6 @@ class Pendatang_model extends CI_Model {
 		}
 	}
 
-	public function getkecamatanexclude($id_kecamatan)
-	{
-		$query = $this->db->query('select * from m_kecamatan where id_kecamatan NOT IN ('.$id_kecamatan.')');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	public function getdesa()
 	{
 		$query = $this->db->query('select * from m_desa');
@@ -172,37 +130,9 @@ class Pendatang_model extends CI_Model {
 		}
 	}
 
-	public function getdesaexclude($id_desa)
-	{
-		$query = $this->db->query('select * from m_desa where id_desa NOT IN ('.$id_desa.')');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	public function getbanjar()
 	{
 		$query = $this->db->query('select * from m_banjar');
-
-		if($query->num_rows() > 0)
-		{
-			return $query->result();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	public function getbanjarexclude($id_banjar)
-	{
-		$query = $this->db->query('select * from m_banjar where id_banjar NOT IN ('.$id_banjar.')');
 
 		if($query->num_rows() > 0)
 		{
@@ -580,6 +510,110 @@ class Pendatang_model extends CI_Model {
 		{
 			//echo $querystr;
 			echo "meong";
+		}
+	}
+
+	public function getkabupatenbyprovinsi($provinsi)
+	{
+		if($provinsi != "")
+		{
+			$query = $this->db->query('select k.*
+			from m_kabupaten k
+			where k.status <> 0 
+			and k.id_provinsi='.$provinsi);
+		}
+		else
+		{
+			$query = $this->db->query('select k.*
+			from m_kabupaten k
+			where k.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getkecamatanbykabupaten($kabupaten)
+	{
+		if($kabupaten != "")
+		{
+			$query = $this->db->query('select k.*
+			from m_kecamatan k
+			where k.status <> 0 
+			and k.id_kabupaten='.$kabupaten);
+		}
+		else
+		{
+			$query = $this->db->query('select k.*
+			from m_kecamatan k
+			where k.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getdesabykecamatan($kecamatan)
+	{
+		if($kecamatan != "")
+		{
+			$query = $this->db->query('select d.*
+			from m_desa d
+			where d.status <> 0 
+			and d.id_kecamatan='.$kecamatan);
+		}
+		else
+		{
+			$query = $this->db->query('select d.*
+			from m_desa d
+			where d.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getbanjarbydesa($desa)
+	{
+		if($desa != "")
+		{
+			$query = $this->db->query('select b.*
+			from m_banjar b
+			where b.status <> 0 
+			and b.id_desa='.$desa);
+		}
+		else
+		{
+			$query = $this->db->query('select b.*
+			from m_banjar b
+			where b.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

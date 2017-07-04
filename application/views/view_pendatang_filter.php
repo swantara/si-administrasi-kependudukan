@@ -266,8 +266,8 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <small>Provinsi Asal</small>
-                    <select name="provinsi" id="provinsi" class="form-control input-sm">
-                      <option <?=set_select('provinsi', "")?> value="">Pilih Semua</option>
+                    <select name="provinsi" id="provinsi" class="form-control input-sm" onchange="getkabupaten(this)">
+                      <option <?=set_select('provinsi', "")?> value="">Semua Provinsi</option>
                       <?php
                         if(is_object($provinsi) || is_array($provinsi)) :
                           foreach ($provinsi as $row) :
@@ -283,8 +283,8 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <small>Kabupaten Asal</small>
-                    <select name="kabupaten" id="kabupaten" class="form-control input-sm">
-                      <option <?=set_select('kabupaten', "")?> value="">Pilih Semua</option>
+                    <select name="kabupaten" id="kabupaten" class="form-control input-sm" onchange="getkecamatan(this)">
+                      <option <?=set_select('kabupaten', "")?> value="">Semua Kabupaten</option>
                       <?php
                         if(is_object($kabupaten) || is_array($kabupaten)) :
                           foreach ($kabupaten as $row) :
@@ -302,8 +302,8 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <small>Kecamatan Asal</small>
-                    <select name="kecamatan" id="kecamatan" class="form-control input-sm">
-                      <option <?=set_select('kecamatan', "")?> value="">Pilih Semua</option>
+                    <select name="kecamatan" id="kecamatan" class="form-control input-sm" onchange="getdesa(this)">
+                      <option <?=set_select('kecamatan', "")?> value="">Semua Kecamatan</option>
                       <?php
                         if(is_object($kecamatan) || is_array($kecamatan)) :
                           foreach ($kecamatan as $row) :
@@ -319,8 +319,8 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <small>Desa Asal</small>
-                    <select name="desa" id="desa" class="form-control input-sm">
-                      <option <?=set_select('desa', "")?> value="">Pilih Semua</option>
+                    <select name="desa" id="desa" class="form-control input-sm" onchange="getbanjar(this)">
+                      <option <?=set_select('desa', "")?> value="">Semua Desa</option>
                       <?php
                         if(is_object($desa) || is_array($desa)) :
                           foreach ($desa as $row) :
@@ -337,7 +337,7 @@
                   <div class="form-group">
                     <small>Banjar Asal</small>
                     <select name="banjar" id="banjar" class="form-control input-sm">
-                      <option <?=set_select('banjar', "")?> value="">Pilih Semua</option>
+                      <option <?=set_select('banjar', "")?> value="">Semua Banjar</option>
                       <?php
                         if(is_object($banjar) || is_array($banjar)) :
                           foreach ($banjar as $row) :
@@ -702,4 +702,114 @@
           // });
       });
     }
+  </script>
+
+  <!-- select option limiter -->
+  <script> 
+
+  var kabupaten = $('#kabupaten');
+  var kecamatan = $('#kecamatan');
+  var desa = $('#desa');
+  var banjar = $('#banjar');
+
+  function getkabupaten(input)
+  {
+    $.getJSON( "<?=site_url('pendatang/ajaxgetkabupatenbyprovinsi/')?>" + input.value)
+      .done(function( data ) {
+        if(data != false)
+        {
+          kabupaten.empty();
+          kabupaten.append($("<option></option>").attr("value","").text("Semua Kabupaten"));
+
+          $.each(data, function(key, value) {   
+            kabupaten
+              .append($("<option></option>")
+              .attr("value",value.id_kabupaten)
+              .text(value.kabupaten));
+          });
+        }
+        else
+        {
+          kabupaten.empty();
+          kabupaten.append($("<option></option>").attr("value","").text("Semua Kabupaten"));
+          kabupaten.append($("<option></option>").attr("disabled","disabled").text("*Kabupaten tidak ditemukan"));
+        }
+      });
+  }
+
+  function getkecamatan(input)
+  {
+    $.getJSON( "<?=site_url('pendatang/ajaxgetkecamatanbykabupaten/')?>" + input.value)
+      .done(function( data ) {
+        if(data != false)
+        {
+          kecamatan.empty();
+          kecamatan.append($("<option></option>").attr("value","").text("Semua Kecamatan"));
+
+          $.each(data, function(key, value) {   
+            kecamatan
+              .append($("<option></option>")
+              .attr("value",value.id_kecamatan)
+              .text(value.kecamatan));
+          });
+        }
+        else
+        {
+          kecamatan.empty();
+          kecamatan.append($("<option></option>").attr("value","").text("Semua Kecamatan"));
+          kecamatan.append($("<option></option>").attr("disabled","disabled").text("*Kecamatan tidak ditemukan"));
+        }
+      });
+  }
+
+  function getdesa(input)
+  {
+    $.getJSON( "<?=site_url('pendatang/ajaxgetdesabykecamatan/')?>" + input.value)
+      .done(function( data ) {
+        if(data != false)
+        {
+          desa.empty();
+          desa.append($("<option></option>").attr("value","").text("Semua Desa"));
+
+          $.each(data, function(key, value) {   
+            desa
+              .append($("<option></option>")
+              .attr("value",value.id_desa)
+              .text(value.desa));
+          });
+        }
+        else
+        {
+          desa.empty();
+          desa.append($("<option></option>").attr("value","").text("Semua Desa"));
+          desa.append($("<option></option>").attr("disabled","disabled").text("*Desa tidak ditemukan"));
+        }
+      });
+  }
+
+  function getbanjar(input)
+  {
+    $.getJSON( "<?=site_url('pendatang/ajaxgetbanjarbydesa/')?>" + input.value)
+      .done(function( data ) {
+        if(data != false)
+        {
+          banjar.empty();
+          banjar.append($("<option></option>").attr("value","").text("Semua Banjar"));
+
+          $.each(data, function(key, value) {   
+            banjar
+              .append($("<option></option>")
+              .attr("value",value.id_banjar)
+              .text(value.banjar));
+          });
+        }
+        else
+        {
+          banjar.empty();
+          banjar.append($("<option></option>").attr("value","").text("Semua Banjar"));
+          banjar.append($("<option></option>").attr("disabled","disabled").text("*Banjar tidak Ditemukan"));
+        }
+      });
+  }
+
   </script>

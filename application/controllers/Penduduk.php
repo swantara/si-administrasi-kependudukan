@@ -99,7 +99,7 @@ class Penduduk extends CI_Controller {
 			$data['pendidikan'] = $this->penduduk->getpendidikan();
 			$data['kawin'] = $this->penduduk->getstatuskawin();
 			$data['kependudukan'] = $this->penduduk->getstatuspenduduk();
-			$data['body'] = $this->load->view('edit_penduduk', $data, true);
+			$data['body'] = $this->load->view('edit_penduduk', $data, true); 
 			$this->load->view('template', $data);
 		}
 		else

@@ -471,4 +471,108 @@ class Pindah_model extends CI_Model {
 			echo "meong";
 		}
 	}
+
+	public function getkabupatenbyprovinsi($provinsi)
+	{
+		if($provinsi != "")
+		{
+			$query = $this->db->query('select k.*
+			from m_kabupaten k
+			where k.status <> 0 
+			and k.id_provinsi='.$provinsi);
+		}
+		else
+		{
+			$query = $this->db->query('select k.*
+			from m_kabupaten k
+			where k.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getkecamatanbykabupaten($kabupaten)
+	{
+		if($kabupaten != "")
+		{
+			$query = $this->db->query('select k.*
+			from m_kecamatan k
+			where k.status <> 0 
+			and k.id_kabupaten='.$kabupaten);
+		}
+		else
+		{
+			$query = $this->db->query('select k.*
+			from m_kecamatan k
+			where k.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getdesabykecamatan($kecamatan)
+	{
+		if($kecamatan != "")
+		{
+			$query = $this->db->query('select d.*
+			from m_desa d
+			where d.status <> 0 
+			and d.id_kecamatan='.$kecamatan);
+		}
+		else
+		{
+			$query = $this->db->query('select d.*
+			from m_desa d
+			where d.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getbanjarbydesa($desa)
+	{
+		if($desa != "")
+		{
+			$query = $this->db->query('select b.*
+			from m_banjar b
+			where b.status <> 0 
+			and b.id_desa='.$desa);
+		}
+		else
+		{
+			$query = $this->db->query('select b.*
+			from m_banjar b
+			where b.status <> 0');
+		}
+
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

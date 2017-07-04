@@ -116,4 +116,32 @@ class Pindah extends CI_Controller {
 		$this->pindah->hapus($id);
 		redirect('pindah','refresh');
 	}
+
+	public function ajaxgetkabupatenbyprovinsi($provinsi = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pindah->getkabupatenbyprovinsi($provinsi));
+		}
+	}
+
+	public function ajaxgetkecamatanbykabupaten($kabupaten = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pindah->getkecamatanbykabupaten($kabupaten));
+		}
+	}
+
+	public function ajaxgetdesabykecamatan($kecamatan = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pindah->getdesabykecamatan($kecamatan));
+		}
+	}
+
+	public function ajaxgetbanjarbydesa($desa = "")
+	{
+		if($this->input->is_ajax_request()){
+			echo json_encode($this->pindah->getbanjarbydesa($desa));
+		}
+	}
 }
